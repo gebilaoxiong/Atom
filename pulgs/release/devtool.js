@@ -5,9 +5,9 @@
  * @description
  */
 define(function(require, exports, module) {
+  var pagePath = require.resolve('./devtool/index.html');
 
-  var pagePath = require.resolve('./index.html');
-
+  alert(chrome.runtime.getURL(pagePath))
 
   //创建发布面板
   chrome.devtools.panels.create("Release", "", pagePath);

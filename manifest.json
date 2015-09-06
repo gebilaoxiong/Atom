@@ -17,5 +17,5 @@
   "manifest_version": 2,
 
   //开发者工具栏页面
-  "devtools_page": "devtools/main.html"
+  "devtools_page": "devtools.html"
 }

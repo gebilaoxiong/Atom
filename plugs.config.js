@@ -5,10 +5,10 @@
  * @description   插件配置
  */
 define({
-  /*发布页优化*/
+  /*工具栏发布页*/
   "release": {
     //权限
-    //"permission": []
+    "permission": [],
 
     //扩展工具初始化文件
     "devtools": "devtool"
