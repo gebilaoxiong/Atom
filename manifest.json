@@ -1,0 +1,21 @@
+/**
+ * @authors       xiongyang
+ * @email         gebilaoxiong@gmail.com
+ * @date          2015-09-06 10:02:19
+ * @description
+ */
+{
+  //名称
+  "name": "Atom",
+
+  "description":"一款插件而已",
+
+  //版本号
+  "version": "0.0.1",
+
+  //manifest版本
+  "manifest_version": 2,
+
+  //开发者工具栏页面
+  "devtools_page": "devtools/main.html"
+}

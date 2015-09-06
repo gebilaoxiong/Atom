@@ -1,0 +1,21 @@
+{
+  "name": "Atom",
+  "version": "0.0.0",
+  "authors": [
+    "gebilaoxiong <gebilaoxiong@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "seajs": "~3.0.0",
+    "seajs-preload": "*",
+    "seajs-text": "~1.1.1",
+    "underscore": "~1.8.3"
+  }
+}
