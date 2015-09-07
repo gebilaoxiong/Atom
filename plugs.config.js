@@ -6,7 +6,7 @@
  */
 define({
   /*工具栏发布页*/
-  "release": {
+  "branches": {
     //权限
     "permission": [],
 

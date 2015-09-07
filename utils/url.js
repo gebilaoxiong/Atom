@@ -8,12 +8,7 @@
 define(function(require, exports, module) {
   var resolve;
 
-  /**
-   * 将to转换为绝对路径
-   */
-  resolve = exports.resolve = function(to) {
-    return seajs.resolve(to);
-  }
+  exports.root = require.resolve('../');
 
 
   /**
@@ -24,18 +19,15 @@ define(function(require, exports, module) {
       fromPartials, toPartials, len,
       i, sameIndex;
 
-    //将路径转换为绝对路径
-    from = resolve(from);
-    to = resolve(to);
-
     //通过分隔符切割为字符串数组
-    fromPartials = from.split('/');
-    toPartials = to.split('/');
+    fromPartials = trimArray(from.split('/'));
+    toPartials = trimArray(to.split('/'));
 
     //获取最小长度
     len = Math.min(fromPartials.length, toPartials.length);
 
     //获取两个路径中相同的索引
+    sameIndex = len;
     for (i = 0; i < len; i++) {
       if (fromPartials[i] !== toPartials[i]) {
         sameIndex = i;
@@ -52,6 +44,39 @@ define(function(require, exports, module) {
     ret = ret.concat(toPartials.slice(sameIndex));
 
     return ret.join('/');
+  }
+
+  /**
+   * 去掉数组中两端的空白元素
+   */
+  function trimArray(arr) {
+    var lastIndex = arr.length - 1,
+      start, end;
+
+    //找到数组第一个非空的索引
+    start = 0;
+    for (; start < lastIndex; start++) {
+      if (arr[start]) {
+        break;
+      }
+    }
+
+    end = lastIndex;
+    for (; end > 0; end--) {
+      if (arr[end]) {
+        break;
+      }
+    }
+
+    if (start === 0 && end === lastIndex) {
+      return arr
+    }
+
+    if (start > end) {
+      return [];
+    }
+
+    return arr.slice(start, end + 1);
   }
 
 });

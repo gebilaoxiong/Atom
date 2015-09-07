@@ -26,7 +26,7 @@ define(function(require, exports, module) {
 
       //未禁用
       if (type in plugCfg && !plugCfg.disabled) {
-        files.push('pulgs/' + name + '/' + plugCfg[type]);
+        files.push('plugs/' + name + '/' + plugCfg[type]);
       }
     });
 
