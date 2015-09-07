@@ -10,11 +10,7 @@ requirejs.config({
 
   paths: {
     /*控件库*/
-    'controls': 'libs/controls.min',
-    /*基础设施*/
-    'infrastructure': 'infrastructure',
-    /*通用*/
-    'common': 'common'
+    'controls': 'libs/controls.min'
   },
 
   shim: {
