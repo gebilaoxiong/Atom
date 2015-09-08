@@ -7,10 +7,11 @@
 define({
   /*工具栏发布页*/
   "branches": {
-    //权限
-    "permission": [],
 
     //扩展工具初始化文件
-    "devtools": "devtool"
+    "devtools": "devtool/index",
+
+    //后台进程
+    "background": "background/index"
   }
 });

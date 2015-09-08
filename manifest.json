@@ -8,16 +8,16 @@
   //名称
   "name": "Atom",
 
-  "description": "一款基于任务的分支管理插件",
+  "description": "",
 
   //版本号
-  "version": "0.0.1",
+  "version": "1.0",
 
   //manifest版本
   "manifest_version": 2,
 
-  "permissions": [
-    "https://ajax.googleapis.com/"
+  "permissions":[
+    "https://www.baidu.com/"
   ],
 
   "background": {

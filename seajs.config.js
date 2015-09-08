@@ -20,7 +20,11 @@ seajs.config({
     //工具类
     'utils': 'utils',
 
-    'devtools': 'devtools'
+    //开发者工具栏
+    'devtools': 'devtools',
+
+    //后台进程
+    'background': 'background'
   },
 
   /*别名*/
