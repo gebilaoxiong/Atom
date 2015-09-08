@@ -8,13 +8,18 @@
   //名称
   "name": "Atom",
 
-  "description":"一款插件而已",
+  "description": "一款基于任务的分支管理插件",
 
   //版本号
   "version": "0.0.1",
 
   //manifest版本
   "manifest_version": 2,
+
+  //权限
+  "permissions": [
+    "https://ajax.googleapis.com/"
+  ],
 
   //开发者工具栏页面
   "devtools_page": "devtools.html"

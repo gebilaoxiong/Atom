@@ -468,32 +468,7 @@ input{
   height: 100%;
   z-index: 1;
 }
-/*搜索状态*/
-/*灰色*/
-.l-vp.search>.l-hd>.in{
-  background: #f6f6f6;
-}
-.l-vp.search>.l-hd .brand{
-  color: #212121;
-}
-.l-vp.search>.l-hd .mn>.search{
-  background:#fff;
-}
-.l-vp.search>.l-hd .search .kw::-webkit-input-placeholder { 
-  color: #212121; 
-} 
-.l-vp.search>.l-hd .search:before{
-  box-shadow: inset -24px 0 12px -12px #f6f6f6;
-}
-.l-vp.search>.l-hd .brand .u-icon.menu{
-  background-image: url(images/ic_menu_blk_2x.png);
-}
-.l-vp.search>.l-hd .m-search .u-icon.search{
-  background-image: url(images/ic_search_blk_24dp_r1.png);
-}
-.l-vp.search>.l-hd .m-search .kw{
-  color: #212121;
-}
+
 
 /*head*/
 .l-hd{
@@ -503,7 +478,7 @@ input{
   left: 0;
   width: 100%;
   height: 40px;
-  z-index: 100;
+  z-index: 1000;
 }
 .l-hd>.in{
   display: flex;
@@ -546,8 +521,8 @@ input{
 .l-hd .brand .title{
   margin: auto 0;
 }
-.l-hd .mn>.holder{
-  min-width: 200px;
+.l-hd .mn{
+  margin: auto 0;
 }
 .l-hd .mn>.search{
   width: 1200px;
@@ -560,8 +535,13 @@ input{
 
 /*body*/
 .l-bd{
+  display: flex;
   width: 100%;
   margin-top: 40px;
+  background: #f2f2f2;
+}
+.l-bd>.mn{
+  overflow-y:auto;
 }
 
 
@@ -569,7 +549,7 @@ input{
 /*两栏布局*/
 .l-ct{
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 .l-ct>.side,
 .l-ct>.mn{
@@ -580,15 +560,13 @@ input{
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 11;
 }
 .l-ct>.mn{
   position: relative;
-  display: flex;
   width: 100%;
-  margin: auto 0;
   line-height: 30px;
-  z-index: 1;
+  z-index: 10;
 }
 
 /**
@@ -644,7 +622,6 @@ input{
 
 /*导航*/
 .m-nav{
-  background: #f2f2f2;
   top: 0;
   bottom: 0;
   margin: 0;
@@ -654,10 +631,6 @@ input{
   width: 216px;
   transform: translateX(-242px);
   transition: transform .15s ease-in-out;
-}
-/*展开*/
-.l-vp.expand .m-nav{
-  transform: translateX(0px);
 }
 .m-nav .item{
   display: block;
@@ -688,6 +661,7 @@ input{
  * 模块    unit
  * 前缀    .u-
  */
+/*图标*/
 .u-icon{
   display: inline-block;
   width: 24px;
@@ -707,4 +681,71 @@ input{
 }
 .u-icon.clock{
   background-image: url(images/ic_upcoming_clr_24dp_r4.png);
+}
+
+/*遮罩*/
+.u-mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.35);
+  z-index: 1;
+  opacity: 0;
+  transition:all .2s cubic-bezier(.4,0,.2,1);
+}
+
+
+
+/**
+ * 状态  state
+ * 前缀  .z-
+ */
+/*状态:搜索*/
+.z-search>.l-hd>.in{
+  background: #f6f6f6;
+}
+.z-search>.l-hd .brand{
+  color: #212121;
+}
+.z-search>.l-hd .brand .u-icon.menu{
+  background-image: url(images/ic_menu_blk_2x.png);
+}
+.z-search>.l-hd .mn>.search{
+  background:#fff;
+}
+.z-search>.l-hd .kw::-webkit-input-placeholder { 
+  color: #212121; 
+} 
+.z-search>.l-hd .search:before{
+  box-shadow: inset -24px 0 12px -12px #f6f6f6;
+}
+.z-search>.l-hd .m-search .u-icon.search{
+  background-image: url(images/ic_search_blk_24dp_r1.png);
+}
+.z-search>.l-hd .m-search .kw{
+  color: #212121;
+}
+.z-search>.l-bd .m-nav .active{
+  font-weight: normal;
+  color: #616161;
+  background: none;
+}
+
+/*展开菜单*/
+.z-expand>.l-hd .mn{
+  padding-left: 200px;
+}
+.z-expand>.l-bd .mn{
+  padding-left: 216px;
+}
+.z-expand .m-nav{
+  transform: translateX(0px);
+}
+
+/*显示遮罩*/
+.z-mask .u-mask{
+  opacity: 1;
+  z-index: 100;
 }
