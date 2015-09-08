@@ -16,10 +16,13 @@
   //manifest版本
   "manifest_version": 2,
 
-  //权限
   "permissions": [
     "https://ajax.googleapis.com/"
   ],
+
+  "background": {
+    "page": "background.html"
+  },
 
   //开发者工具栏页面
   "devtools_page": "devtools.html"
