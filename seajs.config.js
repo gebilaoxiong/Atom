@@ -24,7 +24,9 @@ seajs.config({
     'devtools': 'devtools',
 
     //后台进程
-    'background': 'background'
+    'background': 'background',
+
+    'bower_components':'bower_components'
   },
 
   /*别名*/

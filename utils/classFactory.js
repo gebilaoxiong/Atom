@@ -8,8 +8,6 @@
 define(function(require, exports, module) {
   var ClassFactory,
 
-    us = require('underscore'),
-
     array_shift = Array.prototype.shift,
 
     array_slice = Array.prototype.slice,
@@ -38,7 +36,7 @@ define(function(require, exports, module) {
         parent, partial;
 
       //传入了基类
-      if (us.isFunction(params[0])) {
+      if (_.isFunction(params[0])) {
         parent = array_shift.call(params);
       }
 
@@ -86,7 +84,7 @@ define(function(require, exports, module) {
 
         member = partial[i];
 
-        if (us.isFunction(member) && !member.$isClass) {
+        if (_.isFunction(member) && !member.$isClass) {
           member = wrapFunction(member);
           member.$owner = klass;
           member.$name = i;

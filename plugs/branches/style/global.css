@@ -682,6 +682,9 @@ input{
 .u-icon.clock{
   background-image: url(images/ic_upcoming_clr_24dp_r4.png);
 }
+.u-icon.config{
+  background-image: url(images/ic_settings_g60_24dp_r3.png);
+}
 
 /*遮罩*/
 .u-mask{

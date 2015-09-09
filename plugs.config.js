@@ -9,7 +9,7 @@ define({
   "branches": {
 
     //扩展工具初始化文件
-    "devtools": "devtool/index",
+    "devtools": "index",
 
     //后台进程
     "background": "background/index"

@@ -11,13 +11,11 @@ define(function(require, exports, module) {
 
     ClassFactory = require('utils/classFactory'),
 
-    us = require('underscore'),
-
     array_shift = Array.prototype.shift,
 
     array_slice = Array.prototype.slice;
 
-  Abstract = ClassFactory.define('Abstract', {
+  Abstract = module.exports = ClassFactory.define('Abstract', {
     /**
      * 获取实例的继承结构
      * @return {String} 继承结构
@@ -49,9 +47,8 @@ define(function(require, exports, module) {
    *
    */
   Abstract.prototype.callParent = function(method, args) {
-    var methodName = us.isString(method) ? method : false,
-      caller,
-      superPorto;
+    var methodName = _.isString(method) ? method : false,
+      caller, superPorto;
 
     //没有提供方法名
     if (!methodName) {
@@ -96,6 +93,6 @@ define(function(require, exports, module) {
   /**
    * 销毁
    */
-  Abstract.destroy = function(){}
+  Abstract.destroy = function() {}
 
 })

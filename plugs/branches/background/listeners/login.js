@@ -6,17 +6,9 @@
  * @version  $Id$
  */
 define(function(require, exports, module) {
+  var receiver = require('../receiver');
 
-  chrome.runtime.onConnect.addListener(function(devToolsConnection) {
+  receiver.bind('login', function(message) {
     
-    var x = new XMLHttpRequest();
-    x.open('GET', 'https://www.baidu.com/');
-    x.onload=function(){
-      alert(x.response)
-    }
-
-    x.send();
-
   });
-
 })
