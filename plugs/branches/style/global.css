@@ -524,9 +524,33 @@ input{
 .l-hd .mn{
   margin: auto 0;
 }
+.l-hd .mn>.holder{
+  min-width:200px;
+}
 .l-hd .mn>.search{
   width: 1200px;
   margin: 0 auto;
+}
+@media (max-width: 1800px){
+  .l-hd .mn>.search{
+    width: 66.66%;
+  }
+}
+@media (max-width: 1632px){
+  .l-hd .mn>.search {
+    margin-left: 72px;
+  }
+}
+@media (max-width:1260px){
+  .l-hd .mn>.search{
+    width:840px
+  }
+}
+@media (max-width:920px){
+  .l-hd .mn>.search{
+    width:auto;
+    margin: 0 40px 0 40px;
+  }
 }
 .l-hd .mn>.tools{
   min-width: 200px;
@@ -737,9 +761,6 @@ input{
 }
 
 /*展开菜单*/
-.z-expand>.l-hd .mn{
-  padding-left: 200px;
-}
 .z-expand>.l-bd .mn{
   padding-left: 216px;
 }
