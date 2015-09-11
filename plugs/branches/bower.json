@@ -13,11 +13,5 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "seajs": "~3.0.0",
-    "seajs-preload": "*",
-    "seajs-text": "~1.1.1",
-    "vue": "~0.12.13",
-    "vue-router": "~0.5.2"
-  }
+  "dependencies": {}
 }
