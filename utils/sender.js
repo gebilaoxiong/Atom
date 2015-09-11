@@ -7,7 +7,7 @@
 define(function(require, exports, module) {
   var Sender,
 
-    Abstract = require('utils/abstract');
+    Abstract = require('utils/Abstract');
 
   Sender = module.exports = Abstract.extend('Sender', {
     

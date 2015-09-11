@@ -567,6 +567,12 @@ input{
 .l-bd>.mn{
   overflow-y:auto;
 }
+.l-bd>.mn>.in{
+  width: 1200px;
+  min-width: 512px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 
@@ -681,6 +687,8 @@ input{
 }
 
 
+
+
 /**
  * 模块    unit
  * 前缀    .u-
@@ -760,10 +768,6 @@ input{
   background: none;
 }
 
-/*展开菜单*/
-.z-expand>.l-bd .mn{
-  padding-left: 216px;
-}
 .z-expand .m-nav{
   transform: translateX(0px);
 }

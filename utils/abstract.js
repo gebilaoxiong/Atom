@@ -9,7 +9,7 @@ define(function(require, exports, module) {
 
   var Abstract,
 
-    ClassFactory = require('utils/classFactory'),
+    ClassFactory = require('utils/ClassFactory'),
 
     array_shift = Array.prototype.shift,
 

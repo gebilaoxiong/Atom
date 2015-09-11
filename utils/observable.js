@@ -7,7 +7,7 @@
 define(function(require, exports, module) {
   var Observable,
 
-    Abstract = require('utils/abstract'),
+    Abstract = require('utils/Abstract'),
 
     array_shift = Array.prototype.shift,
 

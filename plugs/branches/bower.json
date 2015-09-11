@@ -13,5 +13,9 @@
     "test",
     "tests"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "seajs": "~3.0.0",
+    "seajs-preload": "*",
+    "seajs-text": "~1.1.1"
+  }
 }

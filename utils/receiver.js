@@ -13,7 +13,7 @@
 define(function(require, exports, module) {
   var Receiver,
 
-    Observable = require('utils/observable');
+    Observable = require('utils/Observable');
 
   Receiver = module.exports = Observable.extend('Receiver', {
 
