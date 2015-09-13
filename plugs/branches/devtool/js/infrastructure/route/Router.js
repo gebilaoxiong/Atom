@@ -4,15 +4,17 @@
  * @date          2015-09-11 16:56:24
  * @description
  */
-define([
-  'controls',
-  'infrastructure/route/Route',
-  'infrastructure/route/History'
-], function($, Route, History) {
+define(function(require, exports, module) {
 
-  var Router;
+  var Router,
 
-  Router = Q.Class.define($.util.Observable, {
+    $ = require('controls'),
+
+    Route = require('infrastructure/route/Route'),
+
+    History = require('infrastructure/route/History');
+
+  Router = mdoule.exports = Q.Class.define($.util.Observable, {
 
     /*是否完成启动*/
     started: false,
@@ -229,6 +231,4 @@ define([
       me.callParent(arguments);
     }
   });
-
-  return Router;
 });

@@ -6,7 +6,7 @@
  *                负责匹配URL是否符合规则
  *                获取url中的参数信息
  */
-define(function() {
+define(function(require, exports, module) {
   var Route,
     //参数（数字、大小写字母、下划线）
     rparam = '[0-9A-Za-z_]*',
@@ -23,7 +23,7 @@ define(function() {
 
     decodeURICmp = window.decodeURIComponent;
 
-  Route = Q.Class.define({
+  Route = module.exports = Q.Class.define({
 
     /*命名空间*/
     namespace: undefined,
@@ -143,6 +143,4 @@ define(function() {
       return ret;
     }
   });
-
-  return Route;
 });

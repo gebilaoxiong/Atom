@@ -9,35 +9,43 @@
 
   //配置require.js
   seajs.config({
-    base: 'devtool/js',
-    
+    base: './devtool/js',
+
     debug: true,
 
     preload: ['queen'],
 
     paths: {
-      'libs':'libs',
+      'libs': 'libs',
 
-      /*queen*/
-      'queen':'libs/queen/queen',
-
-      /*queen控件库*/
-      'controls': 'libs/queen/controls.min',
-
-      'utils':'../../../utils',
+      'utils': '../../../utils',
 
       /*基础设施层*/
       'infrastructure': 'infrastructure'
+    },
+
+    /*别名*/
+    alias: {
+
+      'seajs-text': 'bower_components/seajs-text/dist/seajs-text',
+
+      /*queen*/
+      'queen': 'libs/queen/queen',
+
+      /*queen控件库*/
+      'controls': 'libs/queen/controls.min'
     }
   });
 
+
   //加载Queen
-  define(['queen'], function(Q) {
+  seajs.use(['queen'], function(Q) {
 
     /*占位图片*/
     Q.BLANK_ICON = 'style/images/queen/cleardot.gif';
 
-  
+
+
   });
 
 }();

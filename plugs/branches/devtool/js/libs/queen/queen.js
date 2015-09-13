@@ -5151,7 +5151,7 @@ Q.mix((function(window, Q) {
           if (args == null) {
             return Q.String.empty;
           }
-          
+
           for (i in args) {
             _format = _format.replace(new RegExp('\\{' + i + '\\}', 'g'), toString(args[i]));
           }
@@ -5805,13 +5805,11 @@ Q.mix((function(window, Q) {
   }
 }(Q, window);
 
-- function(factory) {
+- function(Q) {
 
-  /*AMD加载方式*/
-  if (typeof define == 'function' && define.amd) {
-    define(factory);
+  /*AMD CMD加载方式*/
+  if (typeof define == 'function' && (define.amd || define.cmd)) {
+    define(Q);
   }
 
-}(function() {
-  return Q;
-});
+}(Q);

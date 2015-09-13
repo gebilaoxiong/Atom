@@ -4,15 +4,17 @@
  * @date          2015-09-11 16:49:51
  * @description
  */
-define(['controls'], function($) {
+define(function(require, exports, module) {
   var History,
+
+    $ = require('controls'),
 
     rhash = /#(.*)$/,
 
     /*移除hash开头的#  结尾的空白*/
     rhashStrip = /^#|\s+$/;
 
-  History = Q.Class.define($.util.Observable, {
+  History = mdouel.exports = Q.Class.define($.util.Observable, {
 
     /*当前hash值*/
     locationHash: undefined,
@@ -164,5 +166,4 @@ define(['controls'], function($) {
     }
   });
 
-  return History;
 })

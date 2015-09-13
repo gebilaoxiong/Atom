@@ -6,11 +6,72 @@
   <title>Atom - branches</title>
   <!--Queen stylesheet-->
   <link rel="stylesheet" type="text/css" href="devtool/style/queen/module.css"/>
-  <!--require-->
+  <!--global-->
+  <link rel="stylesheet" type="text/css" href="style/global.css"/>
+  <!--seajs-->
   <script type="text/javascript" src="bower_components/seajs/dist/sea-debug.js"></script>
+  <!--seajs-preload-->
+  <script type="text/javascript" src="bower_components/seajs-preload/dist/seajs-preload.js"></script>
   <script type="text/javascript" src="devtool/js/bootstrap.js"></script>
 </head>
 <body>
+
+<!--viewport-->
+<div class="l-vp">
+
+  <!--head-->
+  <div class="l-hd m-hd lightBlue">
+    <!--inner-->
+    <div class="in l-ct">
+      
+      <!--brand-->
+      <div class="brand side">
+        <span class="icon"><i class="u-icon menu"></i></span>
+        <span class="title">任务管理</span>
+      </div>
+      <!--brand End-->
+
+      <!--main-->
+      <div class="mn">
+        <div class="holder"></div>
+        <!--search-->
+        <div class="middle m-search" style="display:none">
+          <span class="icon"><i class="u-icon search"></i></span>
+          <input class="kw" placeholder="搜索"/>
+        </div>
+        <!--state-->
+        <div class="middle m-state">
+          <div class="tips">选中了</div>
+          <!--tools-->
+          <ul class="tools">
+            <li class="u-tool remove"
+                title="删除" 
+                data-command="remove"></li>
+            <li class="u-tool push"
+                title="推送至T6环境" 
+                data-command="push" 
+                data-param="t6"></li>
+            <li class="u-tool push"
+                title="推送至State环境" 
+                data-command="push" 
+                data-param="stage"></li>
+          </ul>
+          <!--tools-->
+        </div>
+        <!--tools-->
+        <div class="sb tools">&nbsp;</div>
+      </div>
+      <!--main End-->
+
+    </div>
+    <!--inner End-->
+  </div>
+  <!--head End-->
+
+
+  <div class="u-mask"></div>
+</div>
+<!--viewport End-->
 
 </body>
 </html>
