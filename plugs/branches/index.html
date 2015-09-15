@@ -20,13 +20,15 @@
 <div class="l-vp">
 
   <!--head-->
-  <div class="l-hd m-hd lightBlue">
+  <div class="l-hd m-hd">
     <!--inner-->
     <div class="in l-ct">
       
       <!--brand-->
       <div class="brand side">
-        <span class="icon"><i class="u-icon menu"></i></span>
+        <span class="tool f-us">
+          <i class="u-tool reverse menu"></i>
+        </span>
         <span class="title">任务管理</span>
       </div>
       <!--brand End-->
@@ -41,20 +43,20 @@
         </div>
         <!--state-->
         <div class="middle m-state">
-          <div class="tips">选中了</div>
+          <div class="tips">选择了 0 项内容</div>
           <!--tools-->
           <ul class="tools">
-            <li class="u-tool remove"
-                title="删除" 
-                data-command="remove"></li>
             <li class="u-tool push"
-                title="推送至T6环境" 
+                title="推送至测试环境" 
                 data-command="push" 
                 data-param="t6"></li>
             <li class="u-tool push"
-                title="推送至State环境" 
+                title="推送至预发布环境" 
                 data-command="push" 
                 data-param="stage"></li>
+            <li class="u-tool remove"
+                title="删除" 
+                data-command="remove"></li>
           </ul>
           <!--tools-->
         </div>

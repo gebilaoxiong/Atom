@@ -63,33 +63,11 @@ input{
   font-size: 1.4em;
   color: #fff;
 }
-.l-hd .brand .icon{ 
-  padding: 8px 24px;
-  opacity: .8;
-  cursor: pointer;
-}
-.l-hd .brand .u-icon{
-  position: relative; 
-}
-.l-hd .brand .u-icon:before{
-  border-radius: 50%;
-  top: -4px;
-  left: -4px;
-  bottom: -4px;
-  right: -4px;
-  margin: auto;
-  padding: 4px;
-  position: absolute;
-  content: ' ';
-}
-.l-hd .brand .icon:active .u-icon:before{
-  background: rgba(0,0,0,.1);
-}
-.l-hd .brand .icon:hover{
-  opacity: 1;
-}
 .l-hd .brand .title{
   margin: auto 0;
+}
+.l-hd .brand .tool{
+  padding: 8px 24px;
 }
 .l-hd .mn{
   margin: auto 0;
@@ -131,10 +109,6 @@ input{
 .l-hd.lightBlue .brand,
 .l-hd.gray .brand{
   color: #212121;
-}
-.l-hd.lightBlue .brand .u-icon.menu,
-.l-hd.gray .brand .u-icon.menu{
-  background-image: url(images/ic_menu_blk_2x.png);
 }
 .l-hd.gray .mn>.middle{
   background:#fff;
@@ -268,6 +242,13 @@ input{
   padding-left: 72px;
   flex: 1;
 }
+.m-state .tools{
+  display: flex;
+}
+.m-state .u-tool{
+  margin: auto 8px;
+  opacity: .6;
+}
 
 /*导航*/
 .m-nav{
@@ -314,7 +295,6 @@ input{
  * 前缀    .u-
  */
 /*图标*/
-.u-tool,
 .u-icon{
   display: inline-block;
   width: 24px;
@@ -322,9 +302,6 @@ input{
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 24px 24px;
-}
-.u-icon.menu{
-  background-image: url(images/ic_menu_wht_2x.png);
 }
 .u-icon.search{
   background-image: url(images/ic_search_wht_24dp_r1_2x.png);
@@ -339,6 +316,54 @@ input{
   background-image: url(images/ic_settings_g60_24dp_r3.png);
 }
 
+/*工具*/
+.u-tool{
+  position: relative; 
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  opacity: .8;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px;
+  cursor: pointer;
+}
+.u-tool:active:before{
+  background: rgba(0,0,0,.1);
+}
+.u-tool:hover{
+  opacity: 1;
+}
+.u-tool:before{
+  border-radius: 50%;
+  top: -4px;
+  left: -4px;
+  bottom: -4px;
+  right: -4px;
+  margin: auto;
+  padding: 4px;
+  position: absolute;
+  content: ' ';
+}
+.u-tool.menu{
+  background-image: url(images/ic_menu_wht_2x.png);
+}
+.u-tool.reverse.menu{
+  background-image: url(images/ic_menu_blk_2x.png);
+}
+.u-tool.remove{
+  background-image: url(images/ic_mark-trash_blk_24dp_r1.png);
+}
+.u-tool.push[data-param="t6"]{
+  background-image: url(images/ic_spam_blk_24dp_r2.png);
+}
+.u-tool.push[data-param="stage"]{
+  background-image: url(images/ic_sent_right_blk_24dp_r1.png);
+}
+.u-tool.back{
+  background-image: url(images/ic_back_left_blk_24dp_r2_2x.png);
+}
+
 /*遮罩*/
 .u-mask{
   position: absolute;
@@ -350,6 +375,19 @@ input{
   z-index: 1;
   opacity: 0;
   transition:all .2s cubic-bezier(.4,0,.2,1);
+}
+
+
+/**
+ * 功能   function
+ * 前缀   .f-
+ */
+/*unselect*/
+.f-us{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
 }
 
 
