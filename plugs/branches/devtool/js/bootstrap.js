@@ -21,7 +21,10 @@
       'utils': '../../../utils',
 
       /*基础设施层*/
-      'infrastructure': 'infrastructure'
+      'infrastructure': 'infrastructure',
+
+      /*项目通用层*/
+      'common': 'common'
     },
 
     /*别名*/
@@ -44,8 +47,15 @@
     /*占位图片*/
     Q.BLANK_ICON = 'style/images/queen/cleardot.gif';
 
-
+    Q.ready(domReady)
 
   });
+
+  /**
+   * DOM Ready
+   */
+  function domReady() {
+    seajs.use(['application'])
+  }
 
 }();

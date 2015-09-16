@@ -14,7 +14,7 @@ define(function(require, exports, module) {
 
     History = require('infrastructure/route/History');
 
-  Router = mdoule.exports = Q.Class.define($.util.Observable, {
+  Router = module.exports = Q.Class.define($.util.Observable, {
 
     /*是否完成启动*/
     started: false,

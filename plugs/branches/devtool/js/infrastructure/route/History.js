@@ -14,7 +14,7 @@ define(function(require, exports, module) {
     /*移除hash开头的#  结尾的空白*/
     rhashStrip = /^#|\s+$/;
 
-  History = mdouel.exports = Q.Class.define($.util.Observable, {
+  History = module.exports = Q.Class.define($.util.Observable, {
 
     /*当前hash值*/
     locationHash: undefined,

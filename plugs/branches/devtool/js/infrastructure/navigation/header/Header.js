@@ -116,6 +116,58 @@ define(function(require, exports, module) {
      */
     getLayoutTarget: function() {
       return me.layoutEl;
+    },
+
+    /**
+     * 获取状态
+     */
+    getState: function() {
+      var me = this,
+        method;
+
+      return {
+        cls: me.cls,
+        title: me.title,
+        iconCls: me.iconCls,
+        searchEl: !me.searchEl.isHidden(),
+        stateEl: !me.stateEl.isHidden()
+      };
+    },
+
+    /**
+     * 应用状态
+     * @param  {Object}       state     状态对象
+     */
+    applyState: function(state) {
+      var me = this;
+
+      //title
+      if ('title' in state) {
+        me.setTitle(state.title);
+      }
+
+      //iconCls
+      if ('iconCls' in state) {
+        me.setIconCls(state.iconCls);
+      }
+
+      //cls
+      if ('cls' in state) {
+        me.el.attr('class', state.cls);
+      }
+
+      //searchEl
+      if ('searchEl' in state) {
+        method = state.searchEl === false ? 'hide' : 'show';
+        me.searchEl[method]();
+      }
+
+      //stateEl
+      if ('stateEl' in state) {
+        method = state.stateEl === false ? 'hide' : 'show';
+        me.stateEl[method]();
+      }
+
     }
 
   });
