@@ -6,12 +6,16 @@
  *                具有控制视图加载的能力
  */
 define(function(require, exports, module) {
-  
+
   var Viewport,
 
-  AbstractComponent = require('infrastructure/component/AbstractComponent');
+    AbstractComponent = require('infrastructure/component/AbstractComponent');
 
   Viewport = module.exports = AbstractComponent.extend({
-    
+
+    /*扩展方法*/
+    methods: {
+      
+    }
   });
 });

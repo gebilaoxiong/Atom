@@ -7,7 +7,5 @@
 define(function(require, exports, module) {
   var AbstractComponent;
 
-  AbstractComponent = module.exports = Vue.extend({
-    
-  });
+  AbstractComponent = module.exports = Vue.extend({});
 })

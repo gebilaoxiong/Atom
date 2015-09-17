@@ -37,7 +37,7 @@ define(function(require, exports, module) {
      * @param  {String} operation       操作类型(openpage,openwindow,redirect)
      * @param  {string} url             请求的URL
      * @param  {Object} config          view初始化对象
-     * @param  {Object} listener       需要绑定的事件
+     * @param  {Object} listener        需要绑定的事件
      */
     init: function(operation, url, config, listener) {
       var me = this,
@@ -61,11 +61,10 @@ define(function(require, exports, module) {
         showExceptionTimes = 0;
 
         if (me.emit(events.beforeload, operation, me, url, config) !== false) {
-          //requirejs加载view
-          //require([url], me.success, me.failure);
-          require([url], me.success);
+          //加载view
+          seajs.use([url], me.success);
         }
-      }
+      };
 
       /**
        * 成功返回的回调
@@ -139,7 +138,7 @@ define(function(require, exports, module) {
 
     init: function(e, msg) {
       var me = this;
-      
+
       me.innerException = e;
       me.callParent('init', [msg]);
     }
