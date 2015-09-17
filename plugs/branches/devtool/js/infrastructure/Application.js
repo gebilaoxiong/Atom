@@ -1,19 +1,20 @@
 /**
  * @authors       xiongyang
  * @email         gebilaoxiong@gmail.com
- * @date          2015-09-16 15:31:23
- * @description   应用程序生命周期
+ * @date          2015-09-17 12:38:50
+ * @description
  */
-
 define(function(require, exports, module) {
 
   var Application,
 
-    $ = require('controls'),
+    util = require('infrastructure/util'),
 
-    Router = require('infrastructure/route/Router');
+    Router = require('infrastructure/route/Router'),
 
-  Application = module.exports = Q.Class.define({
+    Observable = require('utils/Observable');
+
+  Application = module.exports = Observable.extend('Application', {
 
     /*路由器初始化对象*/
     routerConfig: undefined,
@@ -23,11 +24,12 @@ define(function(require, exports, module) {
 
     /**
      * 重写初始化
+     * @param  {Object}         config            初始化配置
      */
     init: function(config) {
       var me = this;
 
-      Q.extend(me, config);
+      util.extend(me, config);
 
       //初始化路由器
       me.initRouter();
@@ -35,11 +37,9 @@ define(function(require, exports, module) {
       //注册路由
       me.regiterRoutes(me.router);
 
-      //注册路由器拦截事件
-      me.router.bind('intercept', me.onRouterIntercept, me);
 
-      //初始化应用程序容器面板
-      me.initAppViewport(me.viewportCfg);
+      //注册路由器拦截事件
+      me.router.bind('intercept', me, me.onRouterIntercept);
 
       me.onApplicationStart();
 
@@ -47,24 +47,12 @@ define(function(require, exports, module) {
       me.router.start();
     },
 
-    /*初始化应用程序容器*/
-    initAppViewport: function(viewportCfg) {
-      var me = this;
-
-      if (!me.viewport) {
-        me.viewport = new $.Viewport(viewportCfg);
-      }
-    },
-
-    /*应用程序开始句柄(此时路由器和应用程序容器已经完成初始化 可以进行一些事件绑定)*/
-    onApplicationStart: Q.noop,
-
     /*初始化路由器*/
     initRouter: function() {
       var me = this,
         router = me.router;
 
-      if (Q.isPlainObject(router)) { //配置对象
+      if (util.isPlainObject(router)) { //配置对象
         me.routerConfig = router;
         me.router = null;
       }
@@ -73,13 +61,14 @@ define(function(require, exports, module) {
         router = me.defaultRouterType;
       }
 
-      if (Q.isFunction(router)) { //构造函数
+      if (util.isFunction(router)) { //构造函数
         me.router = new router(me.routerConfig);
       }
     },
 
-    /*注册路由*/
-    regiterRoutes: Q.noop,
+    regiterRoutes: util.noop,
+
+    onApplicationStart: util.noop,
 
     /**
      * 路由器拦截事件处理函数
@@ -87,24 +76,20 @@ define(function(require, exports, module) {
      * @param  {Route}      route           路由
      * @param  {object}     routeData       路由数据
      */
-    onRouterIntercept: Q.noop,
+    onRouterIntercept: util.noop,
 
     /*导航*/
-    routerNavigate: function(routeData, options) {
+    navigate: function(routeData, options) {
       var hash;
 
       hash = this.translateRouteDataToHash(routeData);
 
-      //console
-      GLOBAL.logInfo('Router ', (options && options.replace ? '替换' : '推入'), ' hash : ', hash);
-
       this.router.navigate(hash, options);
     },
 
-    translateRouteDataToHash: Q.noop
-
+    translateRouteDataToHash: util.noop
   });
 
-  Application.prototype.defaultRouterType = Router;
 
-});
+  Application.prototype.defaultRouterType = Router;
+})

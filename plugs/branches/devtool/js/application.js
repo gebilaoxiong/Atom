@@ -1,194 +1,77 @@
 /**
  * @authors       xiongyang
  * @email         gebilaoxiong@gmail.com
- * @date          2015-09-16 15:39:53
+ * @date          2015-09-17 13:56:10
  * @description
  */
-
 define(function(require, exports, module) {
-  var application,
-
-    $ = require('controls'),
-
-    Application = require('infrastructure/Application'),
+  var Application = require('infrastructure/Application'),
 
     sprit = '/',
 
-    empty = '';
+    empty = '',
 
-  application = module.exports = new Application({
+    projectDir = 'project',
 
-    /*--------------------应用程序容器viewport配置对象-----------------------*/
-    viewportCfg: {
-
-      /*子控件:导航面板*/
-      items: {
-
-        xtype: $.Panel,
-
-        /*路径映射配置*/
-        routeDataMapper: {
-          dir: 'project', //文件夹路径
-          format: '{module}/{part}/{view}/View'
-        },
-
-        /*菜单路由数据*/
-        menuRouteData: {
-          module: 'Default',
-          part: 'Menu',
-          view: 'Index'
-        }
-      }
-    },
-
-    /*-------------------------应用程序开始句柄-----------------------------*/
-    onApplicationStart: function() {
-      var me = this,
-        navigation, stateProvider, defaultPage;
-
-      /*初始化快捷提示*/
-      $.QuickTips.init();
-
-      /*需修正
-      //将记录模式的存储方式设置为cookie
-      stateProvider=new $.state.CookieProvider();
-      $.state.Manager.setProvider(stateProvider);
-      */
+    app;
 
 
-      //绑定navigation的事件
-      navigation = getNavigation(me);
+  app = module.exports = new Application({
 
-      navigation.bind({
-        //选项卡切换事件
-        tabchange: me.onNavigationTabChange,
-        //激活页面routeData变更事件
-        activepageroutedatachange: me.onActivePageRouteDataChange,
-        //作用域
-        scope: me
-      });
-
-      //打开默认页面
-      defaultPage = navigation.addScriptPage({
-        module: 'Default',
-        part: 'Home',
-        view: 'Index'
-      });
-
-      //此时页面并未加载
-      //设置title
-      defaultPage.setTitle('Begin');
-    },
-
-    /*----------------------------注册路由----------------------------------*/
+    /**
+     * 注册路由
+     */
     regiterRoutes: function(router) {
-
       /*默认路径*/
       router.register('homeRoute', empty, {
         defaults: {
           module: 'Default',
-          part: 'Home',
-          view: 'Index'
+          verb: 'Index'
         }
       });
 
-      //列表视图
-      //module模块名称 part页面名称 view视窗名称
-      router.register('ListViewRoute', '/{module}/{part}/{.view}', {
+      //视图
+      router.register('viewRoute', '/{module}/{.verb}', {
         //默认值
         defaults: {
-          view: 'List'
+          verb: 'index'
         }
       });
 
-      //明细视图 新建模式
-      router.register('DetailViewCreateRoute', '/{module}/{part}/{verb}', {
+      //编辑
+      router.register('editRoute', '/{module}/edit/{id}', {
+        //默认值
         defaults: {
-          view: 'Detail'
-        },
-        //规则限制
-        constraints: {
-          verb: 'Create'
-        }
-      });
-
-      //明细视图 编辑模式
-      router.register('DetailViewModifyRoute', '/{module}/{part}/{verb}/{id}', {
-        defaults: {
-          view: 'Detail'
-        },
-        //规则限制
-        constraints: {
-          id: '[0-9]*',
-          verb: 'Edit'
+          verb: 'edit'
         }
       });
     },
 
-    /*----------------------------路由器URL拦截事件处理--------------------*/
     /**
      * 路由器拦截事件处理函数
-     * @param  {event}      e               事件对象
      * @param  {Route}      route           路由
      * @param  {object}     routeData       路由数据
      */
-    onRouterIntercept: function(e, route, routeData) {
+    onRouterIntercept: function(route, routeData) {
       var navigation;
 
-      GLOBAL.logInfo('Router 拦截事件处理函数 ( hash => routeData ): ',
-        '路由:', route.name,
-        ' 模块:', routeData.module,
-        ' 页面:', routeData.part,
-        ' 视图:', routeData.view);
-
-      if (navigation = getNavigation(this)) {
-        navigation.navigate(routeData);
-      }
+      console.log(this.translateRouteDataToHash(routeData))
     },
 
-    /*---------------------routeData->hash转换------------------*/
+    /**
+     * routeData->hash转换
+     * @param  {object}     routeData       路由数据
+     */
     translateRouteDataToHash: function(routeData) {
       var hash = [
         sprit, routeData.module,
-        sprit, routeData.part,
-        sprit
+        sprit, routeData.verb
       ];
 
-      //detailView
-      if ('verb' in routeData) {
-        hash.push(routeData.verb);
-
-        if ('id' in routeData) {
-          hash.push(sprit, routeData.id);
-        }
-      } else {
-        hash.push(routeData.view);
-      }
-
       return hash.join(empty);
-    },
-
-    /*选项卡切换事件处理函数*/
-    onNavigationTabChange: function(e, navigation, scriptPage) {
-      if (!scriptPage) {
-        return;
-      }
-
-      //选项卡切换的时候需要让history产生历史记录
-      this.routerNavigate(scriptPage.getRouteData(), {
-        silent: true //不触发路由器的拦截事件 
-      });
-    },
-
-    /*激活页面路由数据变更处理函数*/
-    onActivePageRouteDataChange: function(e, navigation, scriptPage, routeData) {
-      //激活页面的跳转需要替换当前历史记录
-      this.routerNavigate(routeData, {
-        silent: true, //不触发路由器的拦截事件 
-        replace: true //替换操作 不会产生浏览器历史
-      });
     }
   });
+
 
   /*获取导航面板*/
   function getNavigation(app) {

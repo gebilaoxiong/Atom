@@ -50,7 +50,7 @@ define(function(require, exports, module) {
     configuration: function(config) {
       var me = this;
 
-      _.extend(me, config);
+      lang.extend(me, config);
 
       me.onConnectHandler = onConnectHandler.bind(me);
       me.onMessageHandler = onMessageHandler.bind(me);

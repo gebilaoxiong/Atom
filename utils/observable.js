@@ -7,6 +7,8 @@
 define(function(require, exports, module) {
   var Observable,
 
+    lang = require('utils/lang'),
+
     Abstract = require('utils/Abstract'),
 
     array_shift = Array.prototype.shift,
@@ -67,7 +69,7 @@ define(function(require, exports, module) {
       }
 
       //例2的情景
-      if (_.isObject(eventName)) {
+      if (lang.isObject(eventName)) {
         scope = eventName.scope;
         delete eventName.scope;
 
@@ -80,13 +82,13 @@ define(function(require, exports, module) {
 
       //整理参数
       //没有传入上下文
-      if (_.isFunction(scope)) {
+      if (lang.isFunction(scope)) {
         func = once;
         once = scope;
         scope = null;
       }
 
-      if (_.isFunction(once)) {
+      if (lang.isFunction(once)) {
         func = once;
         once = null;
       }
@@ -97,7 +99,7 @@ define(function(require, exports, module) {
 
       //给委托函数加上uuid
       if (func.uuid == null) {
-        func.uuid = _.uniqueId();
+        func.uuid = lang.uniqueId();
       }
 
       //如果该事件处理函数只调用一次
@@ -199,7 +201,7 @@ define(function(require, exports, module) {
       }
 
       //解除情景二
-      if (_.isObject(eventName)) {
+      if (lang.isObject(eventName)) {
         scope = eventName.scope;
         delete eventName.scope;
 
@@ -210,7 +212,7 @@ define(function(require, exports, module) {
         return me;
       }
 
-      if (_.isFunction(scope)) {
+      if (lang.isFunction(scope)) {
         func = scope;
         scope = undefined;
       }

@@ -13,12 +13,13 @@
 
     debug: true,
 
-    preload: ['queen'],
+    preload: ['seajs-text'],
 
     paths: {
       'libs': 'libs',
 
-      'utils': '../../../utils',
+      'utils': seajs.resolve('../../utils')
+        .replace(/\.js/,''),
 
       /*基础设施层*/
       'infrastructure': 'infrastructure',
@@ -30,32 +31,12 @@
     /*别名*/
     alias: {
 
-      'seajs-text': 'bower_components/seajs-text/dist/seajs-text',
+      'seajs-text': '../../bower_components/seajs-text/dist/seajs-text'
 
-      /*queen*/
-      'queen': 'libs/queen/queen',
-
-      /*queen控件库*/
-      'controls': 'libs/queen/controls.min'
     }
   });
 
-
-  //加载Queen
-  seajs.use(['queen'], function(Q) {
-
-    /*占位图片*/
-    Q.BLANK_ICON = 'style/images/queen/cleardot.gif';
-
-    Q.ready(domReady)
-
-  });
-
-  /**
-   * DOM Ready
-   */
-  function domReady() {
-    seajs.use(['application'])
-  }
+  //启动
+  seajs.use(['application']);
 
 }();

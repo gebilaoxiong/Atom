@@ -8,6 +8,11 @@
  */
 define(function(require, exports, module) {
   var Route,
+
+    Abstract = require('utils/Abstract'),
+
+    util = require('infrastructure/util'),
+
     //参数（数字、大小写字母、下划线）
     rparam = '[0-9A-Za-z_]*',
 
@@ -16,14 +21,14 @@ define(function(require, exports, module) {
     search = '(?:\\?([\\s\\S]*))?$',
 
     /*预制命令(.为可选#Route属性)*/
-    preCommand = Q.String.escapeRegExp('\\.#'),
+    preCommand = util.escapeRegex('\\.#'),
 
     //命名参数
     rnamedParam = new RegExp('\\\\{([' + preCommand + ']+)?(' + rparam + ')\\\\}', 'g'),
 
     decodeURICmp = window.decodeURIComponent;
 
-  Route = module.exports = Q.Class.define({
+  Route = module.exports = Abstract.extend('Route', {
 
     /*命名空间*/
     namespace: undefined,
@@ -46,7 +51,7 @@ define(function(require, exports, module) {
     init: function(config) {
       var me = this;
 
-      Q.extend(me, config);
+      util.extend(me, config);
 
       //url中的参数
       me.urlParams = [];
@@ -62,6 +67,7 @@ define(function(require, exports, module) {
       var me = this,
         params, defaults, values,
         i, len, ret;
+
 
       if (values = url.match(me.matchRegExp)) {
         //返回值
@@ -80,7 +86,7 @@ define(function(require, exports, module) {
 
         //补充默认值
         if (me.defaults) {
-          Q.each(me.defaults, function(key, defaultVal) {
+          util.each(me.defaults, function(defaultVal, key) {
             if (!ret[key] || !ret[key].length) {
               ret[key] = defaultVal;
             }
@@ -96,7 +102,7 @@ define(function(require, exports, module) {
     createMatcherRegex: function() {
       var me = this,
 
-        matcherSource = Q.String.escapeRegExp(me.url);
+        matcherSource = util.escapeRegex(me.url);
 
       //将URL转换为捕获正则
       matcherSource = matcherSource.replace(rnamedParam, function(_, preCommand, paramName) {

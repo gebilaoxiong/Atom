@@ -8,24 +8,20 @@ define(function(require, exports, module) {
 
   var Router,
 
-    $ = require('controls'),
+    util = require('infrastructure/util'),
+
+    Observable = require('utils/Observable'),
+
+    MixedCollection = require('infrastructure/collection/MixedCollection'),
 
     Route = require('infrastructure/route/Route'),
 
     History = require('infrastructure/route/History');
 
-  Router = module.exports = Q.Class.define($.util.Observable, {
+  Router = module.exports = Observable.extend('Router', {
 
     /*是否完成启动*/
     started: false,
-    /**
-     * 静态方法
-     */
-    statics: {
-      getRouteName: function(o) {
-        return o.name;
-      }
-    },
 
     /**
      * 初始化
@@ -34,7 +30,7 @@ define(function(require, exports, module) {
       var me = this,
         routes, route, i;
 
-      Q.extend(me, config);
+      util.extend(me, config);
 
       if (me.routes) {
         routes = me.routes;
@@ -65,7 +61,7 @@ define(function(require, exports, module) {
       var me = this;
 
       if (!me.route) {
-        me.routes = new Q.MixCollection(Router.getRouteName);
+        me.routes = new MixedCollection(getRouteName);
       }
     },
 
@@ -119,7 +115,7 @@ define(function(require, exports, module) {
       var me = this,
         route;
 
-      if (Q.isString(name)) { //方法一绑定
+      if (util.isString(name)) { //方法一绑定
         route = options || {};
         route.name = name;
         route.url = url;
@@ -128,7 +124,7 @@ define(function(require, exports, module) {
       }
 
       //未传入符合要求的route
-      if (!Q.isDefined(route)) {
+      if (route === undefined) {
         return;
       }
 
@@ -151,7 +147,7 @@ define(function(require, exports, module) {
       var me = this;
 
       me.history = new History({
-        listeners: {
+        listener: {
           hashchange: me.onHistoryHashChange,
           scope: me
         }
@@ -194,15 +190,15 @@ define(function(require, exports, module) {
 
     /**
      * history的hashchange事件处理函数
-     * @param  {EventObject}  e       事件对象
      * @param  {String}     hash    hash值
      */
-    onHistoryHashChange: function(e, hash) {
+    onHistoryHashChange: function(hash) {
       var me = this,
         urlInfo;
+
       //如果路由能够识别hash则触发intercept事件
       if (urlInfo = me.recognize(hash)) {
-        me.fire('intercept', urlInfo.route, urlInfo.args)
+        me.emit('intercept', urlInfo.route, urlInfo.args)
       }
     },
 
@@ -231,4 +227,8 @@ define(function(require, exports, module) {
       me.callParent(arguments);
     }
   });
+
+  function getRouteName(o) {
+    return o.name;
+  }
 });

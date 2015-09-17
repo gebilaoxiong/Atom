@@ -7,14 +7,16 @@
 define(function(require, exports, module) {
   var History,
 
-    $ = require('controls'),
+    Observable = require('utils/Observable'),
+
+    util = require('infrastructure/util'),
 
     rhash = /#(.*)$/,
 
     /*移除hash开头的#  结尾的空白*/
     rhashStrip = /^#|\s+$/;
 
-  History = module.exports = Q.Class.define($.util.Observable, {
+  History = module.exports = Observable.extend('History', {
 
     /*当前hash值*/
     locationHash: undefined,
@@ -28,7 +30,7 @@ define(function(require, exports, module) {
     init: function(options) {
       var me = this;
 
-      Q.extend(me, options);
+      util.extend(me, options);
 
       //缓存location对象
       me.location = window.location;
@@ -45,13 +47,15 @@ define(function(require, exports, module) {
       //当前的hash值
       locationHash = this.getLocationHash();
 
-      Q.events.add(window, 'hashchange', me.checkUrl, null, me);
+      me.checkUrl = me.checkUrl.bind(me)
+
+      util.on(window, 'hashchange', me.checkUrl);
 
       me.locationHash = locationHash;
 
       //如果要求初始化的时候 不触发hashchange事件
       if (!me.initSilent) {
-        me.fire('hashchange', me.locationHash);
+        me.emit('hashchange', me.locationHash);
       }
     },
 
@@ -70,7 +74,9 @@ define(function(require, exports, module) {
         return;
       }
 
-      me.fire('hashchange', currentHash);
+      me.emit('hashchange', currentHash);
+
+      me.locationHash = currentHash;
     },
 
     /**
@@ -92,7 +98,7 @@ define(function(require, exports, module) {
 
       /*整理参数*/
       //如果options为null undefined 或者bool值 则是设置的silent
-      if (options == undefined || Q.isBool(options)) {
+      if (options == undefined || util.isBool(options)) {
         options = {
           silent: !!options
         }
@@ -104,7 +110,7 @@ define(function(require, exports, module) {
 
       //静音 不触发hashchange事件
       if (options.silent !== true) {
-        me.fire('hashchange', locationHash);
+        me.emit('hashchange', locationHash);
       }
     },
 
@@ -123,14 +129,7 @@ define(function(require, exports, module) {
       if (replace) {
         //由于chrome下location.replace替换当前页后 进行退档操作会刷新页面
         //所以我们这里采用replaceState的方式更新hash
-        if (Q.support.replaceState) {
-          me.history.replaceState(me.history.state, '', hash);
-        } else {
-          //先移除location中的锚点信息
-          href = String(location.href).replace(rhash, '');
-          //替换当前页的历史
-          location.replace(href + hash);
-        }
+        me.history.replaceState(me.history.state, '', hash);
       } else {
         location.hash = hash;
       }
@@ -160,8 +159,9 @@ define(function(require, exports, module) {
       me.callParent(arguments);
 
       //解除hashchange事件绑定
-      Q.events.remove(window, 'hashchange', me.checkUrl, me);
+      util.off(window, 'hashchange', me.checkUrl);
 
+      delete me.checkUrl;
       delete me.location;
     }
   });

@@ -11,6 +11,8 @@ define(function(require, exports, module) {
 
     ClassFactory = require('utils/ClassFactory'),
 
+    lang = require('utils/lang'),
+
     array_shift = Array.prototype.shift,
 
     array_slice = Array.prototype.slice;
@@ -47,7 +49,7 @@ define(function(require, exports, module) {
    *
    */
   Abstract.prototype.callParent = function(method, args) {
-    var methodName = _.isString(method) ? method : false,
+    var methodName = lang.isString(method) ? method : false,
       caller, superPorto;
 
     //没有提供方法名
