@@ -12,9 +12,14 @@ define(function(require, exports, module) {
 
     Router = require('infrastructure/route/Router'),
 
-    Observable = require('utils/Observable');
+    Observable = require('utils/Observable'),
+
+    Viewport = require('infrastructure/component/viewport/Viewport');
 
   Application = module.exports = Observable.extend('Application', {
+
+    /*viewport初始化对象*/
+    viewportCfg: undefined,
 
     /*路由器初始化对象*/
     routerConfig: undefined,
@@ -37,9 +42,11 @@ define(function(require, exports, module) {
       //注册路由
       me.regiterRoutes(me.router);
 
-
       //注册路由器拦截事件
       me.router.bind('intercept', me, me.onRouterIntercept);
+
+      //初始化应用程序容器面板
+      me.initAppViewport(me.viewportCfg);
 
       me.onApplicationStart();
 
@@ -67,6 +74,15 @@ define(function(require, exports, module) {
     },
 
     regiterRoutes: util.noop,
+
+    /*初始化应用程序容器*/
+    initAppViewport: function(viewportCfg) {
+      var me = this;
+
+      if (!me.viewport) {
+        me.viewport = new Viewport(viewportCfg);
+      }
+    },
 
     onApplicationStart: util.noop,
 

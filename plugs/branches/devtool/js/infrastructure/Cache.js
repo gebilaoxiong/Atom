@@ -4,7 +4,7 @@
  * @date          2015-09-17 17:59:37
  * @description   链表结构的缓存
  *                参考https://github.com/rsms/js-lru
- *                改为先进后出
+ *                添加pop
  */
 define(function(require, exports, module) {
   var Cache,
@@ -89,6 +89,7 @@ define(function(require, exports, module) {
         return;
       }
 
+      //更新head元素
       me.head = entry.newer;
 
       if (me.head) {
@@ -105,11 +106,78 @@ define(function(require, exports, module) {
     },
 
     /**
+     * 从尾部取出
+     */
+    pop: function() {
+      var me = this,
+        entry = me.tail;
+
+      if(!entry){
+        return;
+      }
+
+      //更新尾部元素
+      me.tail = entry.older;
+
+      if(me.tail){
+        delete me.tail.newer;
+      }
+
+      delete entry.newer;
+      delete entry.older;
+
+      //去掉键值
+      delete me.keymap[entry.key];
+
+      return entry;
+    },
+
+    /**
      * 获取值 将取到的元素放置于tail位置
      * 便于下次快速访问
+     * @param  {String}         key                   键值
+     * @param  {Boolean}        returnEntry           是否返回entry
      */
-    get: function(key) {
+    get: function(key, returnEntry) {
+      var me = this,
+        entry = me.keymap[key];
 
+      //如果entry是在尾部 直接返回
+      if (entry === me.tail) {
+        return returnEntry ? entry : entry.value;
+      }
+
+
+      /**
+       * head                           tail
+       * older                          newer
+       * A      B      <C>      D       E
+       * <------------------------------add direction
+       */
+      //newer
+      if (entry.newer) {
+        //头部元素
+        if (entry === me.head) {
+          me.head = entry.newer;
+        }
+        entry.newer.older = entry.older; //B<--D
+      }
+
+      //older
+      if (entry.older) {
+        entry.older.newer = entry.newer; //B-->D
+      }
+
+      delete entry.newer;
+      entry.older = me.tail;
+
+      //尾部处理
+      if (me.tail) {
+        me.tail.newer = entry;
+      }
+      me.tail = entry;
+
+      return returnEntry ? entry : entry.value;
     }
 
 

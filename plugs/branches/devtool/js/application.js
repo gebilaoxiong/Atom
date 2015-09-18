@@ -18,6 +18,20 @@ define(function(require, exports, module) {
 
   app = module.exports = new Application({
 
+    viewportCfg: {
+
+      el: 'body',
+
+      /*路径映射配置*/
+      routeDataMapper: {
+        //文件夹路径
+        dir: 'project',
+        //映射规则
+        format: '{module}/{verb}/View'
+      }
+
+    },
+
     /**
      * 注册路由
      */

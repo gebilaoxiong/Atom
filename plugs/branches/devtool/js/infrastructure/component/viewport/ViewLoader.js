@@ -9,11 +9,13 @@
  */
 define(function(require, exports, module) {
 
-  var LoadViewProxy,
+  var ViewLoader,
 
     Observable = require('utils/Observable'),
 
-    Exception = require('infrastructure/exception/Exception');
+    Exception = require('infrastructure/exception/Exception'),
+
+    ViewLoadException,
 
     /*事件*/
     events = {
@@ -31,7 +33,7 @@ define(function(require, exports, module) {
     };
 
 
-  LoadViewProxy = Observable.extend('ViewLoader', {
+  ViewLoader = Observable.extend('ViewLoader', {
     /**
      * 初始化
      * @param  {String} operation       操作类型(openpage,openwindow,redirect)
@@ -132,7 +134,7 @@ define(function(require, exports, module) {
   ViewLoadException = Exception.extend('ViewLoadException', {
 
     lang: {
-      noReturnType: '兄弟，哥哥奋力加载尼玛半天 结果没有返回类型！',
+      noReturnType: '没有返回类型！',
       failure: '当前页面加载失败！'
     },
 
@@ -144,5 +146,5 @@ define(function(require, exports, module) {
     }
   });
 
-  return LoadViewProxy;
+  return ViewLoader;
 });

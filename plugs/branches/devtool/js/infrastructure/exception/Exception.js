@@ -13,13 +13,7 @@ define(function(require, exports, module) {
 
     Abstract = require('utils/Abstract');
 
-  Exception = module.exports = function(message) {
-    this.init(message);
-  };
-
-  Exception.prototype = new Error();
-
-  util.extend(Exception.prototype, Abstract.prototype, {
+  Exception = module.exports = Abstract.extend('Exception', {
 
     lang: {},
 
@@ -43,7 +37,6 @@ define(function(require, exports, module) {
     toJson: function() {
       return JSON.stringify(this);
     }
-  })
-
-  return Exception;
+  });
+  
 })

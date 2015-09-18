@@ -268,6 +268,41 @@ define(function(require, exports, module) {
   }
 
   /**
+   * 返回一个格式化函数
+   * @param  {String}     format      字符串格式
+   * @param  {Boolean}    byKeys      是否按名键值方式替换
+   */
+  exports.formater = function(format, byKeys) {
+    return byKeys !== true ?
+
+      //按参数索引的方式格式化
+      function() {
+        var input = format,
+          i, len;
+        //按参数索引的方式格式化
+        for (i = 0, len = arguments.length; i < len; i++) {
+          input = input.replace(new RegExp('\\{' + i + '\\}', 'g'), String(arguments[i]));
+        }
+        return input;
+      } :
+
+      //按第一个参数的名键值方式替换
+      function(args) {
+        var input = format,
+          i;
+
+        if (args == null) {
+          return '';
+        }
+
+        for (i in args) {
+          input = input.replace(new RegExp('\\{' + i + '\\}', 'g'), String(args[i]));
+        }
+        return input;
+      };
+  }
+
+  /**
    * 空函数
    */
   exports.noop = function() {}
