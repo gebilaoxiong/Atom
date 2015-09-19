@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     '<!--search-->',
     '<div class="middle m-search" v-show="searchBar">',
       '<span class="icon"><i class="u-icon search"></i></span>',
-      '<input class="kw" placeholder="搜索"/>',
+      '<input class="kw" placeholder="搜索" v-on="focus:onFocus"/>',
     '</div>'
   ].join('');
 });

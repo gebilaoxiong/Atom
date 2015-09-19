@@ -538,6 +538,7 @@ input{
 .l-hd.gray .brand{
   color: #212121;
 }
+.l-hd.lightBlue .mn>.middle,
 .l-hd.gray .mn>.middle{
   background:#fff;
 }
@@ -661,7 +662,7 @@ input{
 } 
 
 /*状态面板*/
-.m-state .tips{
+.m-command .tips{
   color: #3c80f6;
   font-size: 1.2em;
   height: 24px;
@@ -670,11 +671,11 @@ input{
   padding-left: 72px;
   flex: 1;
 }
-.m-state .tools{
+.m-command .tools{
   margin: 0;
   display: flex;
 }
-.m-state .u-tool{
+.m-command .u-tool{
   margin: auto 8px;
   opacity: .6;
 }

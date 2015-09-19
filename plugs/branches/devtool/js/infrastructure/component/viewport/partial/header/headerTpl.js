@@ -17,9 +17,9 @@ define(function(require, exports, module) {
     '<div class="mn">',
     '<div class="holder"></div>',
 
-    '<search></search>',
+    '<searchbar></searchbar>',
 
-    '<state></state>',
+    '<selectInfo></selectInfo>',
 
     '<!--tools-->',
     '<div class="sb tools">&nbsp;</div>',

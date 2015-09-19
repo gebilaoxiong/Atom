@@ -69,7 +69,7 @@ define(function(require, exports, module) {
     onRouterIntercept: function(route, routeData) {
       var navigation;
 
-      console.log(this.translateRouteDataToHash(routeData))
+      //console.log(this.translateRouteDataToHash(routeData))
     },
 
     /**

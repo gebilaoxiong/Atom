@@ -11,17 +11,17 @@ define(function(require, exports, module) {
 
     util = require('infrastructure/util'),
 
-    AbstractComponent = require('infrastructure/component/AbstractComponent'),
+    BaseComponent = require('infrastructure/component/BaseComponent'),
 
     RouteDataMapper = require('infrastructure/route/RouteDataMapper'),
 
     ViewLoader = require('infrastructure/component/viewport/ViewLoader'),
 
-    Header = require('infrastructure/component/header/Header'),
+    Header = require('infrastructure/component/viewport/partial/header/Header'),
 
     template = '<div class="l-vp"><header></header><main></main></div>';
 
-  Viewport = module.exports = AbstractComponent.extend({
+  Viewport = module.exports = BaseComponent.extend({
     
     replace: false,
 

@@ -6,8 +6,8 @@
  */
 define(function(require, exports, module) {
   module.exports = [
-    '<!--state-->',
-    '<div class="middle m-state" v-show="stateBar">',
+    '<!--selectInfo-->',
+    '<div class="middle m-selectInfo" v-show="selectInfoBar">',
     '<div class="tips">选择了 {{selectedCount}} 项内容</div>',
     '<!--tools-->',
     '<ul class="tools">',

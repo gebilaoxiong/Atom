@@ -2,7 +2,7 @@
  * @authors       xiongyang
  * @email         gebilaoxiong@gmail.com
  * @date          2015-09-17 10:27:25
- * @description   对Vue.util的补充
+ * @description   工具类 对js语言本身的扩充
  */
 define(function(require, exports, module) {
   var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g,
@@ -300,6 +300,35 @@ define(function(require, exports, module) {
         }
         return input;
       };
+  }
+
+  /**
+   * 创建并返回一个像节流阀一样的函数，当重复调用函数的时候，
+   * 最多每隔 wait毫秒调用一次该函数。
+   * @param  {function}       func                函数
+   * @param  {int}            wait                时间段（单位：毫秒）
+   * @param  {object}         scope               上下文
+   * @param  {object}         options             选项
+   *                                              {leading:false,trailing:false}
+   */
+  exports.throttle = function(func, wait, scope, options /*optional*/ ) {
+    var pre = 0,
+      timer, context, params,
+      hanler, ret;
+
+    options = options || {};
+
+    //委托函数
+    handler = function() {
+      //重置pre
+        pre = options.leading === false ? 0 : Date.now();
+      timer = null;
+      func.apply(scope, params);
+    }
+
+    return function() {
+
+    }
   }
 
   /**
