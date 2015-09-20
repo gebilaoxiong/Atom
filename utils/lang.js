@@ -312,23 +312,58 @@ define(function(require, exports, module) {
    *                                              {leading:false,trailing:false}
    */
   exports.throttle = function(func, wait, scope, options /*optional*/ ) {
-    var pre = 0,
-      timer, context, params,
-      hanler, ret;
+    var previous = 0,
+      later, context, params,
+      timer;
 
     options = options || {};
 
-    //委托函数
-    handler = function() {
-      //重置pre
-        pre = options.leading === false ? 0 : Date.now();
+    //延迟执行委托
+    later = function() {
+      //如果为首次执行 重置previous
+      previous = options.leading ? 0 : Date.now();
+
       timer = null;
-      func.apply(scope, params);
+
+      func.apply(context, params);
+
+      context = params = null;
     }
 
     return function() {
+      var now = Date.now(),
+        remaining;
+
+      //previous为0 且 leading为true
+      if (!previous && options.leading === true) {
+        previous = now;
+      }
+
+      //计算超期时间
+      remaining = wait - (now - previous);
+
+      context = scope || this;
+      params = arguments;
+
+      if (remaining <= 0 || remaining > wait) {
+        //清除定时器
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+
+        previous = now;
+
+        func.apply(context, params);
+
+        context = params = null;
+
+      } else if (!timer && options.trailing !== false) {
+        timer = setTimeout(later);
+      }
 
     }
+
   }
 
   /**

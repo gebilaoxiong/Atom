@@ -13,7 +13,9 @@
 define(function(require, exports, module) {
   var Receiver,
 
-    Observable = require('utils/Observable');
+    Observable = require('utils/Observable'),
+
+    lang = require('utils/lang');
 
   Receiver = module.exports = Observable.extend('Receiver', {
 

@@ -36,7 +36,6 @@ define(function(require, exports, module) {
 
   });
 
-
   util.extend(BaseComponent.prototype, {
 
     /**

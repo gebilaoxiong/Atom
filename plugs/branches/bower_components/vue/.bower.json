@@ -19,15 +19,15 @@
     "*.yml"
   ],
   "homepage": "https://github.com/yyx990803/vue",
-  "version": "0.12.14",
-  "_release": "0.12.14",
+  "version": "0.12.15",
+  "_release": "0.12.15",
   "_resolution": {
     "type": "version",
-    "tag": "0.12.14",
-    "commit": "600580761c84ee0ada01a0fadbde894a436e9155"
+    "tag": "0.12.15",
+    "commit": "431563fe9204c9c95d206499faa97c8b2ad3a3bb"
   },
   "_source": "git://github.com/yyx990803/vue.git",
-  "_target": "~0.12.14",
+  "_target": "~0.12.15",
   "_originalSource": "vue",
   "_direct": true
 }

@@ -15,7 +15,6 @@ define(function(require, exports, module) {
 
     app;
 
-
   app = module.exports = new Application({
 
     viewportCfg: {
