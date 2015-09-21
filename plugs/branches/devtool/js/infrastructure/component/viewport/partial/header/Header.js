@@ -10,7 +10,7 @@
 define(function(require, exports, module) {
   var Header,
 
-    modes = {},
+    status = {},
 
     util = require('infrastructure/util'),
 
@@ -23,7 +23,7 @@ define(function(require, exports, module) {
     SelectInfoBar = require('infrastructure/component/viewport/partial/selectInfoBar/SelectInfoBar');
 
   //加载状态
-  modes['search'] = require('infrastructure/component/viewport/partial/header/mode/SearchMode');
+  status['search'] = require('infrastructure/component/viewport/partial/header/status/SearchStatus');
 
   Header = module.exports = BaseComponent.extend({
 
@@ -35,8 +35,9 @@ define(function(require, exports, module) {
 
       /*搜索面板*/
       searchbar: SearchBar,
+
       /*命令面板*/
-      selectInfo: SelectInfoBar
+      selectinfobar: SelectInfoBar
 
     },
 
@@ -77,48 +78,60 @@ define(function(require, exports, module) {
        */
       initModes: function() {
         var me = this,
-          config, modeName;
+          config, statusName;
 
         //如果已完成模式初始化
-        if (me.modes) {
+        if (me.statusCache) {
           return;
         }
 
         //配置
         config = {
           vm: me
-        }
+        };
 
-        me.modes = {};
+        me.statusCache = {};
 
-        for (modeName in modes) {
-          me.modes[modeName] = new modes[modeName](config);
+        for (statusName in status) {
+          me.statusCache[statusName] = new status[statusName](config);
         }
       },
 
       /**
        * 设置模式
-       * @param {String}          modeName            模式名称
+       * @param {String}          statusName            模式名称
        */
-      setMode: function(modeName) {
+      setStatus: function(statusName) {
         var me = this,
           lastMode;
 
         //移除上一个状态
-        if (lastMode = me.mode) {
+        if (lastMode = me.status) {
 
-          lastMode.regain();
+          lastMode.recover();
         }
 
+        delete me.status;
+
         //没有传入模式
-        if (modeName == undefined || !(modeName in me.modes)) {
+        if (statusName == undefined || !(statusName in me.statusCache)) {
           return;
         }
 
-        me.mode = me.modes[modeName];
+        me.status = me.statusCache[statusName];
 
-        me.mode.applyState();
-      }
+        me.status.apply();
+      },
+
+      /**
+       * 恢复应用模式之前的状态
+       */
+      recoverStatus: buildChangeModeHandler(null),
+
+      /**
+       * 点击图标处理函数
+       */
+      processIconClick: invokeStatusMethod('onIconClick')
 
     },
 
@@ -127,27 +140,54 @@ define(function(require, exports, module) {
       /**
        * 搜索面板获取焦点处理事件
        */
-      'searchbar:onfocus': generateChangeModeHandler('search'),
+      'searchbar:onfocus': buildChangeModeHandler('search'),
 
       /**
        * 搜索面板失去焦点处理事件
        */
-      'searchbar:onblur': generateChangeModeHandler(null)
+      'searchbar:onblur': 'recoverStatus'
     }
 
   });
 
   /**
    * 变更状态
-   * @param  {String}         modeName          模式名称
-   * @param  {Boolean}        cancelBubble      是否取消冒泡
+   * @param  {String}         statusName          模式名称
+   * @param  {Boolean}        cancelBubble        是否取消冒泡
    */
-  function generateChangeModeHandler(modeName, cancelBubble) {
+  function buildChangeModeHandler(statusName, cancelBubble) {
 
     return function() {
-      this.setMode(modeName);
+      this.setStatus(statusName);
 
       return cancelBubble !== true ? undefined : false;
+    };
+  }
+
+
+  /**
+   * 调用状态的方法
+   * @param  {string}         methodName          方法名称
+   * @param  {function}       defaultMethod       默认处理方法
+   */
+  function invokeStatusMethod(methodName, defaultMethod) {
+    return function() {
+      var me = this,
+        status = me.status,
+        method;
+
+      method = status ? status[methodName] : defaultMethod;
+
+      //如果是字符串 转换为VM的方法
+      if (util.isString(method)) {
+        method = me[method];
+      }
+
+      if (method == undefined) {
+        return;
+      }
+
+      return method.apply(me, arguments);
     };
   }
 

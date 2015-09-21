@@ -11,6 +11,7 @@ define(function(require, exports, module) {
 
   BaseComponent = module.exports = Vue.extend({
 
+    /*方法*/
     methods: {
 
       /**

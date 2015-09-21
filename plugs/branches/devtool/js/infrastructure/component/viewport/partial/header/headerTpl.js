@@ -7,7 +7,7 @@ define(function(require, exports, module) {
     '<!--brand-->',
     '<div class="brand side">',
     '<span class="tool f-us">',
-    '<i class="u-tool {{icon}}"></i>',
+    '<i class="u-tool {{icon}}" v-on="click:processIconClick"></i>',
     '</span>',
     '<span class="title">{{title}}</span>',
     '</div>',
@@ -17,9 +17,9 @@ define(function(require, exports, module) {
     '<div class="mn">',
     '<div class="holder"></div>',
 
-    '<searchbar></searchbar>',
+    '<searchbar v-ref="searchbar"></searchbar>',
 
-    '<selectInfo></selectInfo>',
+    '<selectinfobar v-ref="selectinfobar"></selectinfobar>',
 
     '<!--tools-->',
     '<div class="sb tools">&nbsp;</div>',

@@ -526,7 +526,6 @@ input{
 }
 @media (max-width:920px){
   .l-hd .mn>.middle{
-    width:auto;
     margin: 0 40px 0 40px;
   }
 }

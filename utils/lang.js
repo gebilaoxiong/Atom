@@ -8,6 +8,7 @@ define(function(require, exports, module) {
   var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g,
     core_toString = Object.prototype.toString,
     core_hasOwnProperty = Object.prototype.hasOwnProperty,
+    core_slice = Array.prototype.slice,
     each, getType;
 
   /**
@@ -364,6 +365,35 @@ define(function(require, exports, module) {
 
     }
 
+  }
+
+  /**
+   * 延迟执行函数
+   * @param  {Function}       func          需要延迟执行的函数
+   * @param  {Int}            wait          等待的毫秒数
+   * @param  {Object}         scope         上下文
+   * @param  {Array}          params        参数
+   */
+  exports.delay = function(func, wait, scope, params) {
+    var handler, args;
+
+    //委托
+    handler = scope || params ?
+      function() {
+        func.apply(scope, args);
+        args = null;
+      } :
+      func;
+
+    //默认参数列表
+    if (!params) {
+      params = [];
+    }
+
+    return function() {
+      args = params.concat(core_slice.call(arguments));
+      return setTimeout(handler, wait);
+    };
   }
 
   /**
