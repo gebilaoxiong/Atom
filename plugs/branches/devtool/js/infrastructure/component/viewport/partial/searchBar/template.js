@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 
   module.exports = [
     '<!--search-->',
-    '<div class="middle m-search" v-show="searchBar">',
+    '<div class="middle m-search" v-if="searchBar">',
       '<span class="icon"><i class="u-icon search"></i></span>',
       '<input class="kw" placeholder="搜索" v-on="focus:onFocus"/>',
     '</div>'
