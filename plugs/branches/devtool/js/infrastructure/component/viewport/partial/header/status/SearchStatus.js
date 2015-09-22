@@ -22,12 +22,28 @@ define(function(require, exports, module) {
       'title': '返回'
     },
 
+    /**
+     * 重写在恢复状态之前的句柄
+     */
+    beforeRecorver: function() {
+      var vm = this.vm,
+        searchBar = vm.$['searchbar'];
+
+      if (searchBar) {
+        searchBar.triggerBlur(true);
+      }
+    },
+
 
     /**
      * icon点击事件处理函数
      */
-    onIconClick: 'recoverStatus'
+    onTitleIconClick: 'recoverStatus',
 
+    /**
+     * title点击事件处理函数
+     */
+    onTitleTextClick: 'recoverStatus'
   });
 
 })

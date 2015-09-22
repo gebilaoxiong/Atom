@@ -5,11 +5,11 @@ define(function(require, exports, module) {
     '<div class="in l-ct">',
 
     '<!--brand-->',
-    '<div class="brand side">',
+    '<div class="m-brand side">',
     '<span class="tool f-us">',
-    '<i class="u-tool {{icon}}" v-on="click:processIconClick"></i>',
+    '<i class="u-tool {{icon}}" tabindex="0" v-on="click:processIconClick"></i>',
     '</span>',
-    '<span class="title">{{title}}</span>',
+    '<span class="title f-us" tabindex="0" v-on="click:processTitleClick">{{title}}</span>',
     '</div>',
     '<!--brand End-->',
 

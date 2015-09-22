@@ -14,9 +14,13 @@ define(function(require, exports, module) {
   HeaderStatus = module.exports = BaseStatus.extend('HeaderStatus', {
 
     /**
-     * Icon图标点击事件处理函数
+     * 标题Icon图标点击事件处理函数
      */
-    onIconClick: util.noop
+    onTitleIconClick: util.noop,
 
+    /**
+     * title点击事件处理函数
+     */
+    onTitleTextClick: util.noop
   });
 })

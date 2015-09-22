@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 
   SearchBar = module.exports = BaseComponent.extend({
 
-    name:'SearchBar',
+    name: 'SearchBar',
 
     /*继承父类作用域*/
     inherit: true,
@@ -75,7 +75,7 @@ define(function(require, exports, module) {
       /**
        * 触发失去焦点事件
        */
-      triggerBlur: function() {
+      triggerBlur: function(slient) {
         var me = this;
 
         me.mimicing = false;
@@ -83,7 +83,9 @@ define(function(require, exports, module) {
         //绑定文档的mousedown事件
         util.off(doc, 'mousedown', me.mimicBlurTimer);
 
-        me.$dispatch('searchbar:onblur');
+        if (slient != true) {
+          me.$dispatch('searchbar:onblur');
+        }
       },
 
       /**

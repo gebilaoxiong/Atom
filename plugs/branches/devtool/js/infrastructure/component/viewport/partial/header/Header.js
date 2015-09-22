@@ -131,8 +131,12 @@ define(function(require, exports, module) {
       /**
        * 点击图标处理函数
        */
-      processIconClick: invokeStatusMethod('onIconClick')
+      processIconClick: invokeStatusMethod('onTitleIconClick'),
 
+      /**
+       * 点击标题处理函数
+       */
+      processTitleClick: invokeStatusMethod('onTitleTextClick')
     },
 
     /*事件处理函数*/
