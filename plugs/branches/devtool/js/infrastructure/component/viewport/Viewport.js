@@ -2,7 +2,7 @@
  * @authors       xiongyang
  * @email         gebilaoxiong@gmail.com
  * @date          2015-09-17 16:37:39
- * @description   视窗
+ * @description   视窗容器
  *                具有控制视图加载的能力
  */
 define(function(require, exports, module) {
@@ -19,10 +19,15 @@ define(function(require, exports, module) {
 
     Header = require('infrastructure/component/viewport/partial/header/Header'),
 
-    template = '<div class="l-vp"><header></header><main></main></div>';
+    template = [
+      '<div class="l-vp">',
+      '   <sidebar></sidebar>',
+      '   <div class="l-ct l-bd"><sidebar></sidebar></div>',
+      '</div>'
+    ].join('');
 
   Viewport = module.exports = BaseComponent.extend({
-    
+
     replace: false,
 
     template: template,
