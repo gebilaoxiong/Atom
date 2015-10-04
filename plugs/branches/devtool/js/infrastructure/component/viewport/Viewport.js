@@ -19,9 +19,11 @@ define(function(require, exports, module) {
 
     Header = require('infrastructure/component/viewport/partial/header/Header'),
 
+    Sidebar = require('infrastructure/component/viewport/partial/sidebar/Sidebar'),
+
     template = [
       '<div class="l-vp">',
-      '   <sidebar></sidebar>',
+      '   <header></header>',
       '   <div class="l-ct l-bd"><sidebar></sidebar></div>',
       '</div>'
     ].join('');
@@ -37,8 +39,9 @@ define(function(require, exports, module) {
      * @type {Object}
      */
     components: {
-      //header
-      header: Header
+      header: Header,
+
+      sidebar:Sidebar
     },
 
     /**

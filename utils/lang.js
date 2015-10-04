@@ -397,6 +397,17 @@ define(function(require, exports, module) {
   }
 
   /**
+   * 将字符串转换为首字母大写
+   * @param  {String} input 需要转换的字符串
+   */
+  exports.cap = function(input) {
+    input = String(input);
+
+    return input.charAt(0).toUpperCase() + input.slice(1);
+  }
+
+
+  /**
    * 空函数
    */
   exports.noop = function() {}

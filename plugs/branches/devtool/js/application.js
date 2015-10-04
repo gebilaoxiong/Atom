@@ -7,6 +7,10 @@
 define(function(require, exports, module) {
   var Application = require('infrastructure/Application'),
 
+    routeRules = require('routeRules'),
+
+    resources = require('resources'),
+
     sprit = '/',
 
     empty = '',
@@ -17,6 +21,9 @@ define(function(require, exports, module) {
 
   app = module.exports = new Application({
 
+    /**
+     * viewport配置
+     */
     viewportCfg: {
 
       el: 'body',
@@ -32,33 +39,14 @@ define(function(require, exports, module) {
     },
 
     /**
-     * 注册路由
+     * 路由规则
      */
-    regiterRoutes: function(router) {
-      /*默认路径*/
-      router.register('homeRoute', empty, {
-        defaults: {
-          module: 'Default',
-          verb: 'Index'
-        }
-      });
+    routeRules: routeRules,
 
-      //视图
-      router.register('viewRoute', '/{module}/{.verb}', {
-        //默认值
-        defaults: {
-          verb: 'index'
-        }
-      });
-
-      //编辑
-      router.register('editRoute', '/{module}/edit/{id}', {
-        //默认值
-        defaults: {
-          verb: 'edit'
-        }
-      });
-    },
+    /**
+     * 资源文件
+     */
+    resources: resources,
 
     /**
      * 路由器拦截事件处理函数
