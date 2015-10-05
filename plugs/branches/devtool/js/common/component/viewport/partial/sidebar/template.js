@@ -15,7 +15,7 @@ define(function(require, exports, module) {
 
       '    <!--item-->',
       '    <li class="item" v-repeat="menus">',
-      '      <a href="javascript:;" v-link="{hash:path, activeCls:\'active\', group:\'sidebar\'}">',
+      '      <a href="javascript:;" v-link="{hash:path, activeCls:\'active\'}">',
       '        <i class="u-icon {{icon}}"></i>',
       '        <span class="text">{{text}}</span>',
       '      </a>',

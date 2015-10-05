@@ -198,7 +198,7 @@ define(function(require, exports, module) {
 
       //如果路由能够识别hash则触发intercept事件
       if (urlInfo = me.recognize(hash)) {
-        me.emit('intercept', urlInfo.route, urlInfo.args)
+        me.emit('intercept', urlInfo.route, urlInfo.args, hash)
       }
     },
 

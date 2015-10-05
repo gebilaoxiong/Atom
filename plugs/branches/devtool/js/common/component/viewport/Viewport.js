@@ -15,11 +15,11 @@ define(function(require, exports, module) {
 
     RouteDataMapper = require('infrastructure/route/RouteDataMapper'),
 
-    ViewLoader = require('infrastructure/component/viewport/ViewLoader'),
+    ViewLoader = require('infrastructure/component/ViewLoader'),
 
-    Header = require('infrastructure/component/viewport/partial/header/Header'),
+    Header = require('common/component/viewport/partial/header/Header'),
 
-    Sidebar = require('infrastructure/component/viewport/partial/sidebar/Sidebar'),
+    Sidebar = require('common/component/viewport/partial/sidebar/Sidebar'),
 
     template = [
       '<div class="l-vp">',

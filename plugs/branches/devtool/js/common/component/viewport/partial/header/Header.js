@@ -3,7 +3,7 @@
  * @email         gebilaoxiong@gmail.com
  * @date          2015-09-18 11:28:52
  * @description   应用程序header
- *                有没有发现VUE的MVVM之道的不足之处在于 
+ *                有没有发现VUE的MVVM之道的不足之处在于
  *                一个VM有很多数据都是状态
  *                而她把它们当做数据来处理
  */
@@ -16,14 +16,14 @@ define(function(require, exports, module) {
 
     BaseComponent = require('infrastructure/component/BaseComponent'),
 
-    template = require('infrastructure/component/viewport/partial/header/headerTpl'),
+    template = require('common/component/viewport/partial/header/headerTpl'),
 
-    SearchBar = require('infrastructure/component/viewport/partial/searchBar/SearchBar'),
+    SearchBar = require('common/component/viewport/partial/searchBar/SearchBar'),
 
-    SelectInfoBar = require('infrastructure/component/viewport/partial/selectInfoBar/SelectInfoBar');
+    SelectInfoBar = require('common/component/viewport/partial/selectInfoBar/SelectInfoBar');
 
   //加载状态
-  status['search'] = require('infrastructure/component/viewport/partial/header/status/SearchStatus');
+  status['search'] = require('common/component/viewport/partial/header/status/SearchStatus');
 
   Header = module.exports = BaseComponent.extend({
 

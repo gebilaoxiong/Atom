@@ -12,14 +12,12 @@ define(function(require, exports, module) {
 
     Router = require('infrastructure/route/Router'),
 
-    Observable = require('utils/Observable'),
-
-    Viewport = require('infrastructure/component/viewport/Viewport');
+    Observable = require('utils/Observable');
 
   Application = module.exports = Observable.extend('Application', {
 
     /*viewport初始化对象*/
-    viewportCfg: undefined,
+    viewport: undefined,
 
     /*路由器*/
     router: undefined,
@@ -30,16 +28,13 @@ define(function(require, exports, module) {
     /*资源文件*/
     resources: undefined,
 
-    /*默认路由类型*/
-    defaultRouterType: Router,
-
     /**
      * 重写初始化
      * @param  {Object}         config            初始化配置
      */
     init: function(config) {
       var me = this,
-        routeRules, resources;
+        routeRules, resources, viewport;
 
       util.extend(me, config);
 
@@ -60,8 +55,11 @@ define(function(require, exports, module) {
       //注册路由器拦截事件
       me.router.bind('intercept', me, me.onRouterIntercept);
 
-      //初始化应用程序容器面板
-      me.initAppViewport(me.viewportCfg);
+      if (viewport = me.viewport) {
+        delete me.viewport;
+        //初始化应用程序容器面板
+        me.initAppViewport(viewport);
+      }
 
       me.onApplicationStart();
 
@@ -167,12 +165,26 @@ define(function(require, exports, module) {
     },
 
     /*初始化应用程序容器*/
-    initAppViewport: function(viewportCfg) {
-      var me = this;
+    initAppViewport: function(viewport) {
+      var me = this,
+        viewportType,config;
 
-      if (!me.viewport) {
-        me.viewport = new Viewport(viewportCfg);
+      if (me.viewport) {
+        return;
       }
+
+      //传入的是构造函数
+      if (util.isFunction(viewport)) {
+        viewportType = viewport;
+      }
+
+      //传入的是配置对象
+      if (util.isObject(viewport)) {
+        viewportType = viewport.xtype;
+        config = viewport;
+      }
+
+      me.viewport = new viewportType(config);
     },
 
     onApplicationStart: util.noop,

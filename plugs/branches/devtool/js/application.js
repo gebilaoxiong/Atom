@@ -7,9 +7,11 @@
 define(function(require, exports, module) {
   var Application = require('infrastructure/Application'),
 
-    routeRules = require('routeRules'),
+    viewportConfig = require('viewportConfig'),
 
     resources = require('resources'),
+
+    router = require('router'), //路由器
 
     sprit = '/',
 
@@ -22,26 +24,15 @@ define(function(require, exports, module) {
   app = module.exports = new Application({
 
     /**
-     * viewport配置
+     * 路由器
+     * 这里采用外部实例化
      */
-    viewportCfg: {
-
-      el: 'body',
-
-      /*路径映射配置*/
-      routeDataMapper: {
-        //文件夹路径
-        dir: 'project',
-        //映射规则
-        format: '{module}/{verb}/View'
-      }
-
-    },
+    router: router,
 
     /**
-     * 路由规则
+     * viewport配置
      */
-    routeRules: routeRules,
+    viewport: viewportConfig,
 
     /**
      * 资源文件
