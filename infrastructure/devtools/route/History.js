@@ -21,7 +21,7 @@ define(function(require, exports, module) {
     /*当前hash值*/
     locationHash: undefined,
 
-    /*初始化完成时是否对向前hash进行匹配*/
+    /*配置完成时(调用start)是否对向前hash进行匹配*/
     initSilent: false,
 
     /**

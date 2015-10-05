@@ -222,11 +222,27 @@ define(function(require, exports, module) {
   }
 
   /**
+   * 是否为空对象
+   * @param  {Object}             obj             需要检测的对象
+   */
+  exports.isEmptyObject = function(obj) {
+    var key;
+
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /**
    * 生成为一键
    */
   var uid = 0;
-  exports.uniqueId = function() {
-    return 'atom' + uid++;
+  exports.uniqueId = function(prefix) {
+    return (prefix || 'atom') + uid++;
   }
 
 
@@ -395,6 +411,17 @@ define(function(require, exports, module) {
       return setTimeout(handler, wait);
     };
   }
+
+  /**
+   * 将字符串转换为首字母大写
+   * @param  {String} input 需要转换的字符串
+   */
+  exports.cap = function(input) {
+    input = String(input);
+
+    return input.charAt(0).toUpperCase() + input.slice(1);
+  }
+
 
   /**
    * 空函数

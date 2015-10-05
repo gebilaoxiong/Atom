@@ -63,15 +63,17 @@ define(function(require, exports, module) {
         attr, attrValue;;
 
 
-      if (me.attrs) {
-        for (attr in me.attrs) {
-          //传入的值
-          propValue = initConfig[attr];
+      if (!me.attrs) {
+        return;
+      }
+      
+      for (attr in me.attrs) {
+        //传入的值
+        propValue = initConfig[attr];
 
-          me[attr] = attrValue == undefined ?
-            attrValue :
-            me.attrs[attr];
-        }
+        me[attr] = attrValue == undefined ?
+          attrValue :
+          me.attrs[attr];
       }
 
     }

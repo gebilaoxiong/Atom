@@ -15,13 +15,15 @@ define(function(require, exports, module) {
 
     RouteDataMapper = require('infrastructure/route/RouteDataMapper'),
 
-    ViewLoader = require('infrastructure/component/viewport/ViewLoader'),
+    ViewLoader = require('infrastructure/component/ViewLoader'),
 
-    Header = require('infrastructure/component/viewport/partial/header/Header'),
+    Header = require('common/component/viewport/partial/header/Header'),
+
+    Sidebar = require('common/component/viewport/partial/sidebar/Sidebar'),
 
     template = [
       '<div class="l-vp">',
-      '   <sidebar></sidebar>',
+      '   <header></header>',
       '   <div class="l-ct l-bd"><sidebar></sidebar></div>',
       '</div>'
     ].join('');
@@ -37,8 +39,9 @@ define(function(require, exports, module) {
      * @type {Object}
      */
     components: {
-      //header
-      header: Header
+      header: Header,
+
+      sidebar:Sidebar
     },
 
     /**

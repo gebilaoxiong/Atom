@@ -5,15 +5,12 @@
  * @description
  */
 {
-  //名称
   "name": "Atom",
 
   "description": "",
 
-  //版本号
   "version": "0.0.1",
 
-  //manifest版本
   "manifest_version": 2,
 
   "permissions": [
@@ -24,6 +21,9 @@
     "page": "background.html"
   },
 
-  //开发者工具栏页面
-  "devtools_page": "devtools.html"
+  "devtools_page": "devtools.html",
+
+  "web_accessible_resources": [
+    "plugs/**.tpl"
+  ]
 }

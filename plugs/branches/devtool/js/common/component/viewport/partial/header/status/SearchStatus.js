@@ -1,6 +1,6 @@
 /**
- * 
- * @authors  熊洋 
+ *
+ * @authors  熊洋
  * @email    xywindows@gmail.com
  * @date     2015-09-19 11:00:47
  * @version  搜索模式
@@ -8,7 +8,7 @@
 define(function(require, exports, module) {
   var SearchStatus,
 
-    HeaderStatus = require('infrastructure/component/viewport/partial/header/status/HeaderStatus');
+    HeaderStatus = require('common/component/viewport/partial/header/status/HeaderStatus');
 
   SearchStatus = module.exports = HeaderStatus.extend('SearchStatus', {
 

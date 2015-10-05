@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 
     BaseComponent = require('infrastructure/component/BaseComponent'),
 
-    template = require('infrastructure/component/viewport/partial/selectInfoBar/template');
+    template = require('common/component/viewport/partial/selectInfoBar/template');
 
 
   SelectInfoBar = module.exports = BaseComponent.extend({

@@ -7,7 +7,7 @@
 define(function(require, exports, module) {
   var HeaderStatus,
 
-    BaseStatus = require('infrastructure/component/status/BaseStatus'),
+    BaseStatus = require('infrastructure/status/BaseStatus'),
 
     util = require('infrastructure/util');
 

@@ -68,7 +68,6 @@ define(function(require, exports, module) {
         params, defaults, values,
         i, len, ret;
 
-
       if (values = url.match(me.matchRegExp)) {
         //返回值
         ret = {};
@@ -104,12 +103,14 @@ define(function(require, exports, module) {
 
         matcherSource = util.escapeRegex(me.url);
 
+      me.constraints = me.constraints || {};
+
       //将URL转换为捕获正则
       matcherSource = matcherSource.replace(rnamedParam, function(_, preCommand, paramName) {
         var param = paramName;
 
         //限制 (constraints中的正则配置)
-        param = me.constraints && me.constraints[param] ?
+        param = param in me.constraints ?
           me.constraints[param] : rparam;
 
         //如果有预置命令则处理之

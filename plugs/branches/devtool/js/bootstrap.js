@@ -22,7 +22,8 @@
         .replace(/\.js/,''),
 
       /*基础设施层*/
-      'infrastructure': 'infrastructure',
+      'infrastructure': seajs.resolve('../../infrastructure/devtools')
+        .replace(/\.js/,''),
 
       /*项目通用层*/
       'common': 'common'

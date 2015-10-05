@@ -5,7 +5,7 @@ define(function(require, exports, module) {
     '<div class="in l-ct">',
 
     '<!--brand-->',
-    '<div class="m-brand side">',
+    '<div class="m-brand l-side">',
     '<span class="tool f-us">',
     '<i class="u-tool {{icon}}" tabindex="0" v-on="click:processIconClick"></i>',
     '</span>',
@@ -14,7 +14,7 @@ define(function(require, exports, module) {
     '<!--brand End-->',
 
     '<!--main-->',
-    '<div class="mn">',
+    '<div class="l-mn">',
     '<div class="holder"></div>',
 
     '<searchbar v-ref="searchbar"></searchbar>',

@@ -492,15 +492,15 @@ input{
   transition: background .15s;
 }
 
-.l-hd .mn{
+.l-hd .l-mn{
   margin: auto 0;
 }
 
-.l-hd .mn>.holder{
+.l-hd .l-mn>.holder{
   min-width:200px;
 }
 
-.l-hd .mn>.middle{
+.l-hd .l-mn>.middle{
   display: flex;
   width: 1200px;
   min-width: 144px;
@@ -508,30 +508,30 @@ input{
 }
 
 @media (max-width: 1800px){
-  .l-hd .mn>.middle{
+  .l-hd .l-mn>.middle{
     width: 66.66%;
   }
 }
 
 @media (max-width: 1632px){
-  .l-hd .mn>.middle {
+  .l-hd .l-mn>.middle {
     margin-left: 72px;
   }
 }
 
 @media (max-width:1260px){
-  .l-hd .mn>.middle{
+  .l-hd .l-mn>.middle{
     width:840px
   }
 }
 
 @media (max-width:920px){
-  .l-hd .mn>.middle{
+  .l-hd .l-mn>.middle{
     margin: 0 40px 0 40px;
   }
 }
 
-.l-hd .mn>.tools{
+.l-hd .l-mn>.tools{
   min-width: 200px;
 }
 
@@ -541,15 +541,15 @@ input{
   color: #212121;
 }
 
-.l-hd.lightBlue .mn>.middle,
-.l-hd.gray .mn>.middle{
+.l-hd.lightBlue .l-mn>.middle,
+.l-hd.gray .l-mn>.middle{
   background:#fff;
 }
 
 .l-hd.lightBlue .kw::-webkit-input-placeholder,
-.l-hd.gray .kw::-webkit-input-placeholder { 
-  color: #212121; 
-} 
+.l-hd.gray .kw::-webkit-input-placeholder {
+  color: #212121;
+}
 
 .l-hd.lightBlue .middle:before,
 .l-hd.gray .middle:before{
@@ -584,11 +584,11 @@ input{
   background: #f2f2f2;
 }
 
-.l-bd>.mn{
+.l-bd>.l-mn{
   overflow-y:auto;
 }
 
-.l-bd>.mn>.in{
+.l-bd>.l-mn>.in{
   width: 1200px;
   min-width: 512px;
   margin-left: auto;
@@ -603,12 +603,12 @@ input{
   z-index: 10;
 }
 
-.l-ct>.side,
-.l-ct>.mn{
+.l-ct>.l-side,
+.l-ct>.l-mn{
   display: flex;
 }
 
-.l-ct>.side{
+.l-ct>.l-side{
   position: absolute;
   height: 100%;
   top: 0;
@@ -616,7 +616,7 @@ input{
   z-index: 11;
 }
 
-.l-ct>.mn{
+.l-ct>.l-mn{
   position: relative;
   width: 100%;
   line-height: 30px;
@@ -701,12 +701,12 @@ input{
   border: none;
   background: none;
   font-size: 1.1em;
-  color: #f1f1f1; 
+  color: #f1f1f1;
 }
 
-.m-search .kw::-webkit-input-placeholder { 
-  color: #f1f1f1; 
-} 
+.m-search .kw::-webkit-input-placeholder {
+  color: #f1f1f1;
+}
 
 /*状态面板*/
 .m-command .tips{
@@ -806,7 +806,7 @@ input{
 
 /*工具*/
 .u-tool{
-  position: relative; 
+  position: relative;
   display: inline-block;
   height: 24px;
   width: 24px;
