@@ -147,24 +147,12 @@ define(function(require, exports, module) {
     /**
      * 注册VUE指令
      */
-    registerDirective: function(name, directive) {
-      var me = this;
-      //传入的是hash对象
-      if (util.isObject(name)) {
+    registerDirective: buildRegisterDirective('directive'),
 
-        util.each(name, function(directive, name) {
-          me.registerDirective(name, directive);
-        })
-
-        return;
-      }
-
-      if (!directive) {
-        return;
-      }
-
-      Vue.directive(name, directive);
-    },
+    /**
+     * 注册VUE元素指令
+     */
+    registerElementDirective: buildRegisterDirective('elementDirective'),
 
     /*初始化应用程序容器*/
     initAppViewport: function(viewport) {
@@ -215,5 +203,31 @@ define(function(require, exports, module) {
     translateRouteDataToHash: util.noop
   });
 
+  /**
+   * 构建指令注册方法
+   * @param  {String}             directiveType          指令类型
+   */
+  function buildRegisterDirective(directiveType) {
+    //调用方法
+    var method = 'register' + util.cap(directiveType);
+
+    return function(name, directive) {
+      var me = this;
+
+      //传入的是hash对象
+      if (util.isObject(name)) {
+        util.each(name, function(directive, directiveName) {
+          me[method](directiveName, directive);
+        })
+        return;
+      }
+
+      if (!directive) {
+        return;
+      }
+
+      Vue[directiveType](name, directive);
+    };
+  }
 
 })
