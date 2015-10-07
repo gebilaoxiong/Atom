@@ -9,6 +9,11 @@ define(function(require, exports, module) {
     /*指令*/
     'directive': {
       'link': require('infrastructure/directive/link')
+    },
+
+    /*元素指令*/
+    'elementDirective':{
+      'link': require('infrastructure/directive/view')
     }
   }
 })

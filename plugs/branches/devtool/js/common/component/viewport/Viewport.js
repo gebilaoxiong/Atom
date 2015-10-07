@@ -24,7 +24,12 @@ define(function(require, exports, module) {
     template = [
       '<div class="l-vp">',
       '   <header></header>',
-      '   <div class="l-ct l-bd"><sidebar></sidebar></div>',
+      '   <div class="l-ct l-bd">',
+      '     <sidebar></sidebar>',
+      '     <div class="l-mn">',
+      '       <div class="in" v-el="view"></div>',
+      '     </div>',
+      '   </div>',
       '</div>'
     ].join('');
 
@@ -189,8 +194,6 @@ define(function(require, exports, module) {
         //   confiremCancelLoadCallback,
         //   loadProxy);
       },
-
-
 
       /**
        * 导航到

@@ -17,9 +17,10 @@ define(function(require, exports, module) {
     '<div class="l-mn">',
     '<div class="holder"></div>',
 
-    '<searchbar v-ref="searchbar"></searchbar>',
-
-    '<selectinfobar v-ref="selectinfobar"></selectinfobar>',
+    '<div class="middle">',
+      '<searchbar v-ref="searchbar"></searchbar>',
+      '<selectinfobar v-ref="selectinfobar"></selectinfobar>',
+    '</div>',
 
     '<!--tools-->',
     '<div class="sb tools">&nbsp;</div>',

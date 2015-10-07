@@ -47,24 +47,26 @@ define(function(require, exports, module) {
         me.registerRoute(routeRules);
       }
 
+      //加载资源
       if (resources = me.resources) {
         delete me.resources;
         me.registerResource(resources);
       }
 
-      //注册路由器拦截事件
-      me.router.bind('intercept', me, me.onRouterIntercept);
-
+      //初始化viewport
       if (viewport = me.viewport) {
         delete me.viewport;
         //初始化应用程序容器面板
         me.initAppViewport(viewport);
       }
 
-      me.onApplicationStart();
+      //注册路由器拦截事件
+      me.router.bind('intercept', me, me.onRouterIntercept);
 
       /*路由器开始工作*/
       me.router.start();
+
+      me.onApplicationStart();
     },
 
     /*初始化路由器*/
@@ -167,7 +169,7 @@ define(function(require, exports, module) {
     /*初始化应用程序容器*/
     initAppViewport: function(viewport) {
       var me = this,
-        viewportType,config;
+        viewportType, config;
 
       if (me.viewport) {
         return;
@@ -191,11 +193,15 @@ define(function(require, exports, module) {
 
     /**
      * 路由器拦截事件处理函数
-     * @param  {event}      e               事件对象
      * @param  {Route}      route           路由
      * @param  {object}     routeData       路由数据
      */
-    onRouterIntercept: util.noop,
+    onRouterIntercept: function(route, routeData) {
+      var me = this,
+        viewport = me.viewport;
+
+      viewport.navigate(routeData);
+    },
 
     /*导航*/
     navigate: function(routeData, options) {

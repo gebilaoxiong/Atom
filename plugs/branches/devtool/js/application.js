@@ -7,7 +7,7 @@
 define(function(require, exports, module) {
   var Application = require('infrastructure/Application'),
 
-    viewportConfig = require('viewportConfig'),
+    viewport = require('viewport'),
 
     resources = require('resources'),
 
@@ -32,7 +32,7 @@ define(function(require, exports, module) {
     /**
      * viewport配置
      */
-    viewport: viewportConfig,
+    viewport: viewport,
 
     /**
      * 资源文件
@@ -40,14 +40,13 @@ define(function(require, exports, module) {
     resources: resources,
 
     /**
-     * 路由器拦截事件处理函数
-     * @param  {Route}      route           路由
-     * @param  {object}     routeData       路由数据
+     * 应用程序开始句柄
      */
-    onRouterIntercept: function(route, routeData) {
-      var navigation;
+    onApplicationStart:function(){
+      var me = this,
+        router = me.router;
 
-      //console.log(this.translateRouteDataToHash(routeData))
+      router.navigate('!/')
     },
 
     /**

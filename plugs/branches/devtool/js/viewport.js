@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 
   var Viewport = require('common/component/viewport/Viewport'),
 
-    config
+    config;
 
   config = {
 

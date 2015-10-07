@@ -14,7 +14,9 @@
   "manifest_version": 2,
 
   "permissions": [
-    "https://www.baidu.com/"
+    "storage",
+
+    "unlimitedStorage"
   ],
 
   "background": {

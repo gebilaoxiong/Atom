@@ -23,6 +23,8 @@ define(function(require, exports, module) {
     /*是否完成启动*/
     started: false,
 
+    initSilent: false,
+
     /**
      * 初始化
      */
@@ -145,8 +147,9 @@ define(function(require, exports, module) {
     /*初始化History*/
     initHistory: function() {
       var me = this;
-
+      
       me.history = new History({
+        initSilent: me.initSilent,
         listener: {
           hashchange: me.onHistoryHashChange,
           scope: me

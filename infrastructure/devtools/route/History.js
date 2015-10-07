@@ -89,8 +89,6 @@ define(function(require, exports, module) {
     navigate: function(locationHash, options) {
       var me = this;
 
-      locationHash = locationHash.replace(rhash, '');
-
       //没有变更
       if (locationHash === me.locationHash) {
         return;
