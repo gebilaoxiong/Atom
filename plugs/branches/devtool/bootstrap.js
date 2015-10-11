@@ -26,7 +26,10 @@
         .replace(/\.js/,''),
 
       /*项目通用层*/
-      'common': 'common'
+      'common': 'common',
+
+      /*视图*/
+      'view': 'view'
     },
 
     /*别名*/
