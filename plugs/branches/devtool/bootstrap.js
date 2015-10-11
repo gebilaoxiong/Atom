@@ -9,7 +9,7 @@
 
   //配置require.js
   seajs.config({
-    base: './devtool/js',
+    base: './devtool',
 
     debug: true,
 
@@ -32,7 +32,10 @@
     /*别名*/
     alias: {
 
-      'seajs-text': '../../bower_components/seajs-text/dist/seajs-text'
+      'seajs-text': '../../bower_components/seajs-text/dist/seajs-text',
+
+      /*路由器实例*/
+      'router': 'router'
 
     }
   });

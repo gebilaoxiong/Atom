@@ -162,6 +162,13 @@ define(function(require, exports, module) {
   }
 
   /**
+   * 类型判定:是否为数字
+   */
+  exports.isNumber = function(input){
+    return !isNaN(parseFloat(input)) && isFinite(input); //是否无穷大
+  }
+
+  /**
    * 类型判定:是否为对象
    * @param  {Mixed}          obj         需要判定的对象
    */

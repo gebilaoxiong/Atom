@@ -28,6 +28,9 @@ define(function(require, exports, module) {
     /*资源文件*/
     resources: undefined,
 
+    /*默认页面*/
+    defaultPage:'',
+
     /**
      * 重写初始化
      * @param  {Object}         config            初始化配置
@@ -60,13 +63,13 @@ define(function(require, exports, module) {
         me.initAppViewport(viewport);
       }
 
-      //注册路由器拦截事件
-      me.router.bind('intercept', me, me.onRouterIntercept);
-
       /*路由器开始工作*/
       me.router.start();
 
-      me.onApplicationStart();
+      /*默认页面*/
+      if(me.defaultPage){
+        me.router.navigate(me.defaultPage);
+      }
     },
 
     /*初始化路由器*/
@@ -147,12 +150,12 @@ define(function(require, exports, module) {
     /**
      * 注册VUE指令
      */
-    registerDirective: buildRegisterDirective('directive'),
+    registerDirective: registerDirectiveFactory('directive'),
 
     /**
      * 注册VUE元素指令
      */
-    registerElementDirective: buildRegisterDirective('elementDirective'),
+    registerElementDirective: registerDirectiveFactory('elementDirective'),
 
     /*初始化应用程序容器*/
     initAppViewport: function(viewport) {
@@ -175,39 +178,14 @@ define(function(require, exports, module) {
       }
 
       me.viewport = new viewportType(config);
-    },
-
-    onApplicationStart: util.noop,
-
-    /**
-     * 路由器拦截事件处理函数
-     * @param  {Route}      route           路由
-     * @param  {object}     routeData       路由数据
-     */
-    onRouterIntercept: function(route, routeData) {
-      var me = this,
-        viewport = me.viewport;
-
-      viewport.navigate(routeData);
-    },
-
-    /*导航*/
-    navigate: function(routeData, options) {
-      var hash;
-
-      hash = this.translateRouteDataToHash(routeData);
-
-      this.router.navigate(hash, options);
-    },
-
-    translateRouteDataToHash: util.noop
+    }
   });
 
   /**
-   * 构建指令注册方法
+   * 指令注册工厂
    * @param  {String}             directiveType          指令类型
    */
-  function buildRegisterDirective(directiveType) {
+  function registerDirectiveFactory(directiveType) {
     //调用方法
     var method = 'register' + util.cap(directiveType);
 

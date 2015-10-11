@@ -13,7 +13,7 @@ define(function(require, exports, module) {
 
     /*元素指令*/
     'elementDirective':{
-      'link': require('infrastructure/directive/view')
+      'view': require('infrastructure/directive/view')
     }
   }
 })

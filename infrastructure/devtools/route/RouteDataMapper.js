@@ -47,7 +47,7 @@ define(function(require, exports, module) {
      *                                                         路由数据
      *
      *
-     * 
+     *
      * 1.routeDataMapper.map();                                映射前一次操作的routeData
      *
      * 2.routeDataMapper.map(-2);                              映射前两次操作的routeData
@@ -74,7 +74,11 @@ define(function(require, exports, module) {
         routeData = vernier.value;
       }
 
-      path = me.dir + '/' + me.format(routeData);
+      path = me.format(routeData);
+
+      if (me.dir) {
+        path = me.dir + '/' + path;
+      }
 
       //插入转换历史
       me.history.put(path, routeData);

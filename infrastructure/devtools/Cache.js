@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 
     Abstract = require('utils/Abstract');
 
-  Cache = module.exports = Abstract.extend({
+  Cache = module.exports = Abstract.extend('Cache',{
 
     /**
      * 头部元素
