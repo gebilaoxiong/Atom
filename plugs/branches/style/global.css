@@ -540,19 +540,21 @@ body, input {
 }
 
 /*灰色*/
-
 .l-hd.gray .in {
   background: #f6f6f6;
 }
 
 /*浅蓝*/
-
 .l-hd.lightBlue .in {
   background: #edf4fd;
 }
 
-/*body*/
+/*黄色*/
+.l-hd.yellow .in{
+  background: #eca403;
+}
 
+/*body*/
 .l-bd {
   display: flex;
   width: 100%;
@@ -567,7 +569,6 @@ body, input {
   min-width: 512px;
   margin-left: auto;
   margin-right: auto;
-  flex: 1;
 }
 @media (max-width:1800px) {
   .bz {
@@ -591,6 +592,7 @@ body, input {
     width: auto;
     margin-left: 272px;
     margin-right: 104px;
+    flex: 1;
   }
 }
 

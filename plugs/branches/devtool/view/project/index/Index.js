@@ -10,6 +10,10 @@
     IndexView;
 
     IndexView = module.exports = BaseView.extend({
-      template:'<div>321</div>'
+      //标题
+      title:'任务管理',
+
+      //主题
+      theme:''
     });
  });
