@@ -7,13 +7,61 @@
 define(function(require, exports, module) {
   var Router = require('infrastructure/route/Router'),
 
-    routes = require('routes'),
+    rules = [],
 
     router;
 
+
+  /**
+   * 默认路径
+   */
+  rules.push({
+    name: 'root',
+    //路径规则
+    url: '{root}',
+    //默认值
+    defaults: {
+      module: 'task',
+      partial: 'index'
+    },
+    //约束
+    constraints: {
+      'root': '!\/'
+    }
+  });
+
+
+  /**
+   * 视图
+   */
+  rules.push({
+    name: 'view',
+    //路径规则
+    url: '!/{module}/{.partial}',
+    //默认值
+    defaults: {
+      partial: 'index'
+    }
+  });
+
+
+  /**
+   * 编辑视图
+   */
+  rules.push({
+    name: 'editRoute',
+    //路径规则
+    url: '!/{module}/edit/{id}',
+    //默认值
+    defaults: {
+      partial: 'edit'
+    }
+  });
+
+
   router = module.exports = new Router({
 
-    routes: routes
+    routes: rules
 
   });
 

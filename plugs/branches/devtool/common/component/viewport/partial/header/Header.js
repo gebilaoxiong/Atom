@@ -16,7 +16,7 @@ define(function(require, exports, module) {
 
     BaseComponent = require('infrastructure/component/BaseComponent'),
 
-    template = require('common/component/viewport/partial/header/headerTpl'),
+    template = require('common/component/viewport/partial/header/template'),
 
     SearchBar = require('common/component/viewport/partial/searchBar/SearchBar'),
 
@@ -136,7 +136,17 @@ define(function(require, exports, module) {
       /**
        * 点击标题处理函数
        */
-      processTitleClick: invokeStatusMethod('onTitleTextClick')
+      processTitleClick: invokeStatusMethod('onTitleTextClick'),
+
+      /**
+       * viewport的view变化时 变更header状态
+       */
+      onViewChange: function(options) {
+        var me = this;
+
+        me.title = options.title;
+        me.theme = options.theme;
+      }
     },
 
     /*事件处理函数*/

@@ -1,0 +1,21 @@
+/*两栏布局*/
+.l-ct {
+  position: relative;
+  z-index: 10;
+}
+.l-ct>.l-side, .l-ct>.l-mn {
+  display: flex;
+}
+.l-ct>.l-side {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 11;
+}
+.l-ct>.l-mn {
+  position: relative;
+  width: 100%;
+  line-height: 30px;
+  z-index: 10;
+}

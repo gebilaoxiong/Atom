@@ -34,10 +34,25 @@ define(function(require, exports, module) {
       sidebar: Sidebar
     },
 
-    data: function() {
-      return {
-        'viewName': 'index'
+    methods: {
+
+      /**
+       * 视图转换处理函数
+       */
+      onViewChange: function(componentType) {
+        var me = this,
+          header = me.$['header'],
+          options = componentType.options;
+
+        //header变更数据
+        header.onViewChange({
+          title:options.title,
+          theme:options.theme
+        });
+
       }
+
     }
   });
+
 });

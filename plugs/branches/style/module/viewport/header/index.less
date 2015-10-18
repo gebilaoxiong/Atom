@@ -1,0 +1,100 @@
+/*head*/
+.m-hd {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 1000;
+}
+.m-hd:before {
+  position: fixed;
+  left: -2%;
+  content: "";
+  width: 104%;
+  height: 40px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+  will-change: top, left;
+}
+.m-hd .m-hdIn {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  line-height: 30px;
+  background: #4285f4;
+  transition: background .15s;
+}
+.m-hd .l-mn {
+  margin: auto 0;
+}
+.m-hd .l-mn .holder {
+  min-width: 200px;
+}
+.m-hd .l-mn .middle {
+  display: flex;
+  width: 1200px;
+  min-width: 144px;
+  margin: 0 auto;
+}
+@media (max-width: 1800px) {
+  .m-hd .l-mn .middle {
+    width: 66.66%;
+  }
+}
+@media (max-width: 1632px) {
+  .m-hd .l-mn .middle {
+    margin-left: 72px;
+  }
+}
+@media (max-width:1260px) {
+  .m-hd .l-mn .middle {
+    width: 840px
+  }
+}
+@media (max-width:920px) {
+  .m-hd .l-mn .middle {
+    margin: 0 40px 0 40px;
+  }
+}
+.m-hd .l-mn .tools {
+  min-width: 200px;
+}
+
+@import "brand.less";
+@import "search.less";
+
+/*反转样式*/
+.m-hd.reverse .m-brand {
+  color: #212121;
+}
+.m-hd.reverse .l-mn .middle{
+  background: #fff;
+}
+.m-hd.reverse .kw::-webkit-input-placeholder{
+  color: #212121;
+}
+.m-hd.reverse .middle:before{
+  box-shadow: inset -24px 0 12px -12px #f6f6f6;
+}
+.m-hd.reverse .m-search .u-icon.search{
+  background-image: url(images/ic_search_blk_24dp_r1.png);
+}
+.m-hd.reverse .m-search .kw{
+  color: #212121;
+}
+
+/*灰色*/
+.m-hd.gray .m-hdIn {
+  background: #f6f6f6;
+}
+
+/*浅蓝*/
+.m-hd.lightBlue .m-hdIn {
+  background: #edf4fd;
+}
+
+/*黄色*/
+.m-hd.yellow .m-hdIn {
+  background: #eca403;
+}

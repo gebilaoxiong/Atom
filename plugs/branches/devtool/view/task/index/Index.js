@@ -4,16 +4,16 @@
  * @date          2015-10-11 12:45:10
  * @description   任务面板默认视图
  */
- define(function(require, epxorts, module){
-   var BaseView = require('infrastructure/component/BaseViewport'),
+define(function(require, epxorts, module) {
+  var View = require('common/component/View'),
 
     IndexView;
 
-    IndexView = module.exports = BaseView.extend({
-      //标题
-      title:'项目配置',
+  IndexView = module.exports = View.extend({
+    //标题
+    title: '任务管理',
 
-      //主题
-      theme:'yellow'
-    });
- });
+    //主题
+    theme: ''
+  });
+});

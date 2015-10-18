@@ -1,0 +1,27 @@
+
+.m-brand {
+  font-size: 1.4em;
+  color: #fff;
+}
+.m-brand .title {
+  position: relative;
+  margin: auto 0;
+  cursor: pointer;
+}
+.m-brand .title:before {
+  position: absolute;
+  bottom: 0px;
+  left: -4px;
+  right: -4px;
+  top: 0px;
+  margin: auto;
+  border-radius: 3px;
+  content: ' ';
+  z-index: -1;
+}
+.m-brand .title:active:before {
+  background: rgba(0, 0, 0, .1);
+}
+.m-brand .tool {
+  padding: 8px 24px;
+}

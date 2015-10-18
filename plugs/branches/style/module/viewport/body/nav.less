@@ -1,0 +1,36 @@
+/*导航*/
+.m-nav {
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 16px 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 216px;
+  transform: translateX(0px);
+  /*transform: translateX(-242px);*/
+  transition: transform .15s ease-in-out;
+}
+.m-nav .item {
+  display: block;
+}
+.m-nav .item a {
+  display: flex;
+  align-items: center;
+  padding: 4px 0 0 16px;
+  color: #616161;
+  line-height: 40px;
+  text-decoration: none;
+}
+.m-nav .item .text {
+  padding-left: 24px;
+}
+.m-nav .item a:hover {
+  background: rgba(0, 0, 0, .03);
+}
+.m-nav .item .active {
+  border-radius: 2px;
+  color: #212121;
+  background: rgba(0, 0, 0, .05);
+  font-weight: bold;
+}

@@ -11,11 +11,11 @@ define(function(require, exports, module) {
 
     LoadProxy = require('infrastructure/LoadProxy'),
 
-    componentDirective = Vue.options.directives._component,
-
     util = require('infrastructure/util'),
 
     router = require('router'),
+
+    superDirective = Vue.options.directives._component,
 
     loadListener = {},
 
@@ -25,9 +25,13 @@ define(function(require, exports, module) {
 
     uid = 0,
 
-    prefix = Vue.config.prefix + 'aync' + Date.now();
+    prefix = Vue.config.prefix + 'aync' + Date.now(),
 
-  util.extend(exports, componentDirective);
+    attrEventHandlers = ['onbeforeload', 'onloadcomplete', 'onloadsuccess', 'onloadfailure', 'oncancelload', 'onchange'];
+
+
+
+  util.extend(exports, superDirective);
 
   /**
    * 绑定
@@ -46,8 +50,14 @@ define(function(require, exports, module) {
 
     me._isDynamicLiteral = true;
 
+    me.eventHandlers = {};
+
+    util.each(attrEventHandlers, function(item) {
+      me.eventHandlers[item] = me._checkParam(item);
+    });
+
     //callparent
-    componentDirective.bind.apply(me, arguments);
+    superDirective.bind.apply(me, arguments);
 
     router.bind('intercept', me, me.onRouteIntercept);
   };
@@ -68,9 +78,9 @@ define(function(require, exports, module) {
     path = mapper.map(routeData);
 
     //获取UID
-    if(path in pathMap){
-       id = pathMap[path];
-    }else{
+    if (path in pathMap) {
+      id = pathMap[path];
+    } else {
       pathMap[path] = id = prefix + (uid++);
     }
 
@@ -96,6 +106,27 @@ define(function(require, exports, module) {
   };
 
   /**
+   * 重写resolveComponent 调用oncomponentchange句柄
+   */
+  exports.resolveComponent = function(id, callback) {
+    var me = this,
+      handler;
+
+    handler = function() {
+      var changeHandler = me.eventHandlers.onchange;
+
+      callback();
+
+      if (changeHandler) {
+        me.vm[changeHandler].call(me.vm, me.Component);
+      }
+    }
+
+    //callparent
+    superDirective.resolveComponent.call(me, id, handler);
+  }
+
+  /**
    * 初始化加载器(有待扩展)
    */
   exports.loadComponent = function(path) {
@@ -113,7 +144,7 @@ define(function(require, exports, module) {
 
     me.loader = new LoadProxy('load', path, me.loadListener);
 
-    me.loader.load(path);
+    me.loader.load();
   }
 
   /**
@@ -149,7 +180,7 @@ define(function(require, exports, module) {
       }
 
       //如果标签上不存在回调方法名称
-      if (!(processHandler = me._checkParam(handler))) {
+      if (!(processHandler = me.eventHandlers[handler])) {
         return;
       }
 
@@ -160,12 +191,12 @@ define(function(require, exports, module) {
   /**
    * 加载完毕钩子
    */
-  loadEventHandlerHooks['success'] = function(loader, operation ,componentType, url) {
+  loadEventHandlerHooks['success'] = function(loader, operation, componentType, url) {
     var me = this,
       id = pathMap[url];
 
     me.vm.$options.components[id] = componentType;
     me.setComponent(id);
-  }
+  };
 
 })

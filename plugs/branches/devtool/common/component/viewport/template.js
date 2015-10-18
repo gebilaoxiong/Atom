@@ -7,11 +7,11 @@
 define(function(require, exports, module) {
 
   module.exports = [
-    '<div class="l-vp">',
+    '<div class="m-vp">',
 
-    '   <header></header>',
+    '   <header v-ref="header"></header>',
 
-    '   <div class="l-ct l-bd">',
+    '   <div class="l-ct m-bd">',
 
     '     <sidebar></sidebar>',
 
@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 
     '       <div class="in">',
 
-    '         <view route="root,view" path="view/{module}/{partial}/index"></view>',
+    '         <view route="root,view" path="view/{module}/{partial}/index" onchange="onViewChange"></view>',
 
     '       </div>',
 

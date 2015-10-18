@@ -1,0 +1,44 @@
+/*body*/
+.m-bd {
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+  background: #f2f2f2;
+}
+.m-bd>.l-mn {
+  overflow-y: auto;
+}
+.m-bd>.l-mn>.in {
+  width: 1200px;
+  min-width: 512px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@import "nav.less";
+
+@media (max-width:1800px) {
+  .bz {
+    width: 66.66%
+  }
+}
+@media (max-width:1260px) {
+  .bz {
+    width: 840px
+  }
+}
+@media (max-width:920px) {
+  .bz {
+    width: auto;
+    margin-left: 40px;
+    margin-right: 40px
+  }
+}
+@media (max-width: 1632px) {
+  .m-bd>.l-mn>.in {
+    width: auto;
+    margin-left: 272px;
+    margin-right: 104px;
+    flex: 1;
+  }
+}
