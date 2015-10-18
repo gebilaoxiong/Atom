@@ -15,7 +15,7 @@ define(function(require, exports, module) {
     /*覆盖状态*/
     state: {
       //主题
-      'theme': 'reverse lightBlue',
+      'theme': 'reverse gray',
       //图标
       'icon': 'back',
 

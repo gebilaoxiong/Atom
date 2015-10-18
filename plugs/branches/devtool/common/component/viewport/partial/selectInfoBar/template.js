@@ -7,7 +7,7 @@
 define(function(require, exports, module) {
   module.exports = [
     '<!--selectInfo-->',
-    '<div class="middle m-selectInfo" v-if="selectInfoBar">',
+    '<div class="m-command" v-if="selectInfoBar">',
     '<div class="tips">选择了 {{selectedCount}} 项内容</div>',
     '<!--tools-->',
     '<ul class="tools">',

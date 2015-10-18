@@ -54,7 +54,7 @@ define(function(require, exports, module) {
 
         'searchBar': true,
 
-        'stateBar': false,
+        'selectInfoBar': false,
 
         //选中行个数
         'selectedCount': 0

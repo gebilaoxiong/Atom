@@ -1,0 +1,104 @@
+/**
+ * 列表
+ */
+.m-list .row {
+  position: relative;
+  display: flex;
+  margin: 1px 0;
+  outline: none;
+  will-change: transform,-webkit-transform;
+  background: #fff;
+}
+.m-list .row:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  pointer-events: none;
+  box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+}
+
+/*工具栏*/
+.m-list .checkbox {
+  position: relative;
+  width: 28px;
+  overflow: hidden;
+  padding: 6px 21px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.m-list .checkbox .icon {
+  height: 18px;
+  width: 18px;
+  margin: 5px;
+  line-height: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor:pointer;
+}
+.m-list .checkbox .icon {
+  background-image: url("images/bt_checkbox_off_2_2x.png");
+}
+.m-list .cell{
+  display:flex;
+  margin: 0 8px 0 8px;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+/*文本*/
+.m-list .cell.text{
+  overflow: hidden;
+  padding-top: 12px;
+}
+.m-list .cell.title{
+  width:170px;
+}
+.m-list .row .fit{
+  min-width: 0;
+  width: 0;
+  overflow: hidden;
+  -webkit-flex: 1;
+  flex: 1;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.m-list .cell.last{
+  margin: 0 18px 0 8px;
+}
+/*描述*/
+.m-list .cell .description{
+  padding-left:10px;
+  color:#757575;
+}
+
+/*允许行选中*/
+.m-list.rowselect .row{
+  cursor:pointer;
+}
+
+/*选中*/
+.m-list .row.selected{
+  background:#edf4fd;
+}
+.m-list .row.selected:after{
+  position: absolute;
+  display: block;
+  width: 2px;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  background: #046bc7;
+  content: '';
+}
+.m-list .selected .checkbox .icon{
+  background-image: url("images/bt_checkbox_on_2_2x.png");
+}

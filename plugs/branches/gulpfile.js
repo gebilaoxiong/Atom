@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 
 //less config
 config.less = {
-  src: ['**/*.less', '!style/base/**/*.less', '!style/module/**/*','!style/layout/**/*','!style/unit/**/*','!style/function/**/*','!node_modules/**/*'],
+  src: ['**/*.less', '!style/base/**/*.less', '!style/module/**/*', '!style/layout/**/*', '!style/unit/**/*', '!style/function/**/*', '!node_modules/**/*'],
   dest: output
 };
 
@@ -17,6 +17,11 @@ config.resource = {
   src: ['**/*.png', '**/*.gif', '**/*.jpg', '**/font/*', '!**/sprite/*', '!output/**', '!node_modules/**/*'],
   dest: output
 };
+
+config.watch = {
+  less: ['**/*.less'],
+  resource: config.resource.src
+}
 
 //clean output
 gulp.task('clean', function() {
@@ -42,8 +47,8 @@ gulp.task('resource', function() {
 
 //watch
 gulp.task('watch', function() {
-  gulp.watch(config.less.src, ['less']);
-  gulp.watch(config.resource.src, ['resource']);
+  gulp.watch(config.watch.less, ['less']);
+  gulp.watch(config.watch.resource, ['resource']);
 });
 
 //默认任务
