@@ -13,17 +13,17 @@
 
     debug: true,
 
-    preload: ['seajs-text'],
+    preload: [
+      'seajs-text', 'moment'
+    ],
 
     paths: {
-      'libs': 'libs',
+      'lib': seajs.resolve('../../bower_components/'),
 
-      'utils': seajs.resolve('../../utils')
-        .replace(/\.js/,''),
+      'utils': seajs.resolve('../../utils/'),
 
       /*基础设施层*/
-      'infrastructure': seajs.resolve('../../infrastructure/devtools')
-        .replace(/\.js/,''),
+      'infrastructure': seajs.resolve('../../infrastructure/devtools/'),
 
       /*项目通用层*/
       'common': 'common',
@@ -37,9 +37,9 @@
 
       'seajs-text': '../../bower_components/seajs-text/dist/seajs-text',
 
-      /*路由器实例*/
-      'router': 'router'
+      'moment': '../../bower_components/moment/moment',
 
+      'moment-local': '../../bower_components/moment/locale/zh-cn'
     }
   });
 

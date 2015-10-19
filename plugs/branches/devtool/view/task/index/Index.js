@@ -7,6 +7,10 @@
 define(function(require, epxorts, module) {
   var View = require('common/component/View'),
 
+    ListPanel = require('view/task/component/list/Panel'),
+
+    template = '<list></list>',
+
     IndexView;
 
   IndexView = module.exports = View.extend({
@@ -14,6 +18,12 @@ define(function(require, epxorts, module) {
     title: '任务管理',
 
     //主题
-    theme: ''
+    theme: '',
+
+    template: template,
+
+    components: {
+      'list': ListPanel
+    }
   });
 });

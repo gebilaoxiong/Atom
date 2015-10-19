@@ -413,7 +413,6 @@ input {
 .l-ct > .l-mn {
   position: relative;
   width: 100%;
-  line-height: 30px;
   z-index: 10;
 }
 /**
@@ -476,13 +475,13 @@ input {
   background-image: url(images/ic_menu_blk_2x.png);
 }
 .u-tool.remove {
-  background-image: url(images/ic_mark-trash_blk_24dp_r1.png);
+  background-image: url(images/ic_trash_g60_24dp_r2_2x.png);
 }
-.u-tool.push[data-param="t6"] {
-  background-image: url(images/ic_spam_blk_24dp_r2.png);
+.u-tool.mark {
+  background-image: url(images/ic_mark-pinned_blk_24dp_r4_2x.png);
 }
-.u-tool.push[data-param="stage"] {
-  background-image: url(images/ic_sent_right_blk_24dp_r1.png);
+.u-tool.like {
+  background-image: url(images/ic_mark-done_blk_24dp_r4_2x.png);
 }
 .u-tool.back {
   background-image: url(images/ic_back_left_blk_24dp_r2_2x.png);
@@ -625,7 +624,7 @@ input {
   padding: 0 10px 0 0;
   border: none;
   background: none;
-  font-size: 1.1em;
+  font-size: 1.2em;
   color: #f1f1f1;
 }
 .m-search .kw::-webkit-input-placeholder {
@@ -767,9 +766,9 @@ input {
  * 面板
  */
 .m-panelHd {
-  margin-top: 20px;
+  margin-top: 16px;
   padding-bottom: 10px;
-  padding-left: 22px;
+  padding-left: 17px;
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
   color: #616161;
@@ -781,7 +780,7 @@ input {
 }
 .m-panelHd .u-tool {
   position: absolute;
-  right: 22px;
+  right: 15px;
   top: 50%;
   margin-top: -17px;
   padding: 0;
@@ -823,19 +822,19 @@ input {
   position: relative;
   width: 28px;
   overflow: hidden;
-  padding: 6px 21px;
+  padding: 7px 15px 7px 18px;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
 .m-list .checkbox .icon {
-  height: 18px;
-  width: 18px;
+  height: 15px;
+  width: 15px;
   margin: 5px;
   line-height: 0;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 18px;
+  background-size: 15px;
   -webkit-user-drag: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -847,17 +846,16 @@ input {
 }
 .m-list .cell {
   display: flex;
-  margin: 0 8px 0 8px;
   white-space: nowrap;
   word-wrap: break-word;
 }
 /*文本*/
 .m-list .cell.text {
   overflow: hidden;
-  padding-top: 12px;
+  padding-top: 10px;
 }
 .m-list .cell.title {
-  width: 170px;
+  width: 160px;
 }
 .m-list .row .fit {
   min-width: 0;
@@ -876,9 +874,29 @@ input {
   padding-left: 10px;
   color: #757575;
 }
-/*允许行选中*/
-.m-list.rowselect .row {
+/*允许行hover*/
+.m-list.canhover .row {
   cursor: pointer;
+}
+/*tool*/
+.m-list .tool {
+  display: none;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  margin: 0 8px 0 8px;
+  align-items: center;
+  justify-content: center;
+  background: inherit;
+  z-index: 1;
+}
+.m-list .tool .u-tool {
+  margin: 0 8px;
+  opacity: 0.5;
+}
+.m-list .tool .u-tool:hover {
+  opacity: 1;
 }
 /*选中*/
 .m-list .row.selected {
@@ -896,4 +914,8 @@ input {
 }
 .m-list .selected .checkbox .icon {
   background-image: url("images/bt_checkbox_on_2_2x.png");
+}
+/*hover*/
+.m-list .row:hover .tool {
+  display: flex;
 }

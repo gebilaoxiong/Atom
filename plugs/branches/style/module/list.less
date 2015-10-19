@@ -26,43 +26,42 @@
   position: relative;
   width: 28px;
   overflow: hidden;
-  padding: 6px 21px;
+  padding: 7px 15px 7px 18px;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
 .m-list .checkbox .icon {
-  height: 18px;
-  width: 18px;
+  height: 15px;
+  width: 15px;
   margin: 5px;
   line-height: 0;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 18px;
+  background-size: 15px;
   -webkit-user-drag: none;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  cursor:pointer;
+  cursor: pointer;
 }
 .m-list .checkbox .icon {
   background-image: url("images/bt_checkbox_off_2_2x.png");
 }
-.m-list .cell{
-  display:flex;
-  margin: 0 8px 0 8px;
+.m-list .cell {
+  display: flex;
   white-space: nowrap;
   word-wrap: break-word;
 }
 /*文本*/
-.m-list .cell.text{
+.m-list .cell.text {
   overflow: hidden;
-  padding-top: 12px;
+  padding-top: 10px;
 }
-.m-list .cell.title{
-  width:170px;
+.m-list .cell.title {
+  width: 160px;
 }
-.m-list .row .fit{
+.m-list .row .fit {
   min-width: 0;
   width: 0;
   overflow: hidden;
@@ -71,25 +70,46 @@
   text-overflow: ellipsis;
   text-align: left;
 }
-.m-list .cell.last{
+.m-list .cell.last {
   margin: 0 18px 0 8px;
 }
 /*描述*/
-.m-list .cell .description{
-  padding-left:10px;
-  color:#757575;
+.m-list .cell .description {
+  padding-left: 10px;
+  color: #757575;
 }
 
-/*允许行选中*/
-.m-list.rowselect .row{
-  cursor:pointer;
+/*允许行hover*/
+.m-list.canhover .row {
+  cursor: pointer;
+}
+
+/*tool*/
+.m-list .tool {
+  display: none;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  margin: 0 8px 0 8px;
+  align-items: center;
+  justify-content: center;
+  background: inherit;
+  z-index: 1;
+}
+.m-list .tool .u-tool {
+  margin: 0 8px;
+  opacity: 0.5;
+}
+.m-list .tool .u-tool:hover {
+  opacity: 1;
 }
 
 /*选中*/
-.m-list .row.selected{
-  background:#edf4fd;
+.m-list .row.selected {
+  background: #edf4fd;
 }
-.m-list .row.selected:after{
+.m-list .row.selected:after {
   position: absolute;
   display: block;
   width: 2px;
@@ -99,6 +119,11 @@
   background: #046bc7;
   content: '';
 }
-.m-list .selected .checkbox .icon{
+.m-list .selected .checkbox .icon {
   background-image: url("images/bt_checkbox_on_2_2x.png");
+}
+
+/*hover*/
+.m-list .row:hover .tool{
+  display:flex;
 }

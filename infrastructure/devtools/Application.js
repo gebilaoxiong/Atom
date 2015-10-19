@@ -150,12 +150,17 @@ define(function(require, exports, module) {
     /**
      * 注册VUE指令
      */
-    registerDirective: registerDirectiveFactory('directive'),
+    registerDirective: registerResourceFactory('directive'),
 
     /**
      * 注册VUE元素指令
      */
-    registerElementDirective: registerDirectiveFactory('elementDirective'),
+    registerElementDirective: registerResourceFactory('elementDirective'),
+
+    /**
+     * 注册VUE过滤器
+     */
+    registerFilter: registerResourceFactory('filter'),
 
     /*初始化应用程序容器*/
     initAppViewport: function(viewport) {
@@ -185,7 +190,7 @@ define(function(require, exports, module) {
    * 指令注册工厂
    * @param  {String}             directiveType          指令类型
    */
-  function registerDirectiveFactory(directiveType) {
+  function registerResourceFactory(directiveType) {
     //调用方法
     var method = 'register' + util.cap(directiveType);
 

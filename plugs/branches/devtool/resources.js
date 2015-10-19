@@ -14,6 +14,11 @@ define(function(require, exports, module) {
     /*元素指令*/
     'elementDirective':{
       'view': require('infrastructure/directive/view')
+    },
+
+    /*过滤器*/
+    'filter':{
+      'relativetime':require('infrastructure/filter/relativetime')
     }
   }
 })
